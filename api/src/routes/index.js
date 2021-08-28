@@ -12,22 +12,18 @@ const router = Router();
 const getPokes = async () => {
   const req1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
   const req2 = await axios.get(req1.data.next);
-  const allPokes = req1.data.results.concat(req2.data.results)
+  const allPokes = req1.data.results.concat(req2.data.results);
+  const pokemons = [];
 
-  return {
-      name:  await allPokes.map(e=>e.name)
+  for (let i = 0; i < allPokes.length; i++) {
+    const name = allPokes[i].name;
+    pokemons.push(name);
+    
   }
-
-
-  
-
-
-
- 
-
-
-}; 
-getPokes().then(e=>console.log(e))
-
+  return {
+    pokemons,
+  };
+};
+getPokes().then((e) => console.log(e));
 
 module.exports = router;
