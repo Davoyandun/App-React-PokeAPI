@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    vida: {
+    hp: {
       type: DataTypes.STRING,
       allowNull: false,
     },
