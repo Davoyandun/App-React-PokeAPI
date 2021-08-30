@@ -13,16 +13,15 @@ const getPokes = async () => {
   const req1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
   const req2 = await axios.get(req1.data.next);
   const allPokes = req1.data.results.concat(req2.data.results);
-  const pokemons = [];
-
+  const pokemon = []
   for (let i = 0; i < allPokes.length; i++) {
-    const name = allPokes[i].name;
-    pokemons.push(name);
-    
+    let name = await allPokes[i].name;
+    let info = await axios.get(allPokes[i].url)
+   pokemon.push({name,info}) 
   }
-  return {
-    pokemons,
-  };
+return{
+  pokemon
+}
 };
 getPokes().then((e) => console.log(e));
 
