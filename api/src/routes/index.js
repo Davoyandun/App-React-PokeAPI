@@ -39,11 +39,8 @@ const getPokes = async () => {
       peso,
     });
   }
-  return pokemon
-  
+  return pokemon;
 };
-
-
 
 let pokeDB = async () => {
   try {
@@ -72,7 +69,7 @@ const allPokes = async () => {
   }
 };
 
-allPokes().then(e=>console.log(e))
+allPokes().then((e) => console.log(e));
 
 // aqui iniciia el ruteo del backend */
 /*
@@ -82,14 +79,14 @@ allPokes().then(e=>console.log(e))
 router.get("/pokemons", async (req, res) => {
   try {
     let allinfo = await allPokes();
-    let infoIndex =  allinfo.map(e=>{
+    let infoIndex = allinfo.map((e) => {
       return {
-        name : e.name,
+        name: e.name,
         img: e.img,
-        id:e.id,
-        type:e.type
-      }
-    })
+        id: e.id,
+        type: e.type,
+      };
+    });
     res.status(200).send(infoIndex);
   } catch (e) {
     console.log(e);
@@ -100,6 +97,14 @@ router.get("/pokemons/:id", async (req, res) => {
   try {
     let id = req.params.id;
     if (id) {
+      let allinfo = await allPokes();
+      console.log(allinfo);
+      let detail = allinfo.filter((e) => {
+        if (id == e.id) {
+          return e;
+        }
+      });
+      res.status(200).send(detail);
     }
   } catch (e) {
     console.log(e);
