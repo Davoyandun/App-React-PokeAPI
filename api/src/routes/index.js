@@ -44,6 +44,7 @@ const getPokes = async () => {
   };
 };
 
+
 let pokeDB = async () => {
   try {
     let BD = await Pokemon.findAll({
@@ -82,15 +83,15 @@ pero primero una partidita  de ajedrez
 router.get("/pokemons", async (req, res) => {
   try {
     let allinfo = await allPokes();
-    // let infoIndex =  allinfo.map(e=>{
-    //   return {
-    //     name : e.name,
-    //     img: e.img,
-    //     id:e.id,
-    //     type:e.type
-    //   }
-    // })
-    res.status(200).send(allinfo[0]);
+    let infoIndex =  allinfo[0].pokemon.map(e=>{
+      return {
+        name : e.name,
+        img: e.img,
+        id:e.id,
+        type:e.type
+      }
+    })
+    res.status(200).json(infoIndex);
   } catch (e) {
     console.log(e);
   }
