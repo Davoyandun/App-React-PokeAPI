@@ -19,15 +19,30 @@ const getPokes = async () => {
     let info = await axios.get(allPokes[i].url);
     let img = await info.data.sprites.other.dream_world.front_default;
     let type = await info.data.types.map((e) => e.type.name);
-
-    pokemon.push({ name, img, type });
+    let id = await info.data.id;
+    let vida = await info.data.stats[0].base_stat;
+    let fuerza = await info.data.stats[1].base_stat;
+    let defensa = await info.data.stats[2].base_stat;
+    let velocidad = await info.data.stats[5].base_stat;
+    let altura = await info.data.height;
+    let peso = await info.data.weight;
+    pokemon.push({
+      name,
+      img,
+      type,
+      id,
+      vida,
+      fuerza,
+      defensa,
+      velocidad,
+      altura,
+      peso,
+    });
   }
   return {
     pokemon,
   };
 };
-
-
 
 let pokeDB = async () => {
   try {
@@ -46,22 +61,49 @@ let pokeDB = async () => {
   }
 };
 
-
-const allPokes =async ()=>{
-  try{
-       let  Api = await getPokes()
-        let DB = await pokeDB()
-        let all = DB.concat(Api)
-    return  all
-  } catch(e){
-    console.log(e)
+const allPokes = async () => {
+  try {
+    let Api = await getPokes();
+    let DB = await pokeDB();
+    let all = DB.concat(Api);
+    return all;
+  } catch (e) {
+    console.log(e);
   }
-}
-allPokes().then(e=>console.log(e))
+};
+
+
+// aqui iniciia el ruteo del backend */
+/*
+♙♙♙♙♙♙♙♙
+♖♘♗♔♕♗♘♖
+pero primero una partidita  de ajedrez
+*/
 router.get("/pokemons", async (req, res) => {
-  let env = await allPokes()
-  res.status(200).json(env)
+  try {
+    let allinfo = await allPokes();
+    // let infoIndex =  allinfo.map(e=>{
+    //   return {
+    //     name : e.name,
+    //     img: e.img,
+    //     id:e.id,
+    //     type:e.type
+    //   }
+    // })
+    res.status(200).send(allinfo[0]);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
+router.get("/pokemons/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    if (id) {
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 module.exports = router;

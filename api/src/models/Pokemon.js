@@ -13,27 +13,27 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    hp: {
+    vida: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Fuerza: {
+    fuerza: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Defensa: {
+    defensa: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Velocidad: {
+    velocidad: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Altura: {
+    altura: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Peso: {
+    peso: {
       type: DataTypes.STRING,
       allowNull: false,
     },
