@@ -69,7 +69,7 @@ const allPokes = async () => {
   }
 };
 
-allPokes().then((e) => console.log(e));
+
 
 // aqui iniciia el ruteo del backend */
 /*
@@ -77,7 +77,27 @@ allPokes().then((e) => console.log(e));
 ♖♘♗♔♕♗♘♖
 */
 router.get("/pokemons", async (req, res) => {
-  try {
+  let name = req.query.name;
+  if (name) {
+    name = name.toLowerCase();
+    let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    console.log(info)
+    let detail = 
+       {
+        name: info.data.name,
+        img: info.data.sprites.other.dream_world.front_default,
+        type: info.data.types.map((e) => e.type.name),
+        id: info.data.id, 
+        vida : info.data.stats[0].base_stat,
+        ataque: info.data.stats[0].base_stat,
+        defensa : info.data.stats[2].base_stat, 
+        velocidad : info.data.stats[5].base_stat,
+        altura :  info.data.height,
+        peso : info.data.weight,
+      };
+    
+    res.status(200).send(detail);
+  } else {
     let allinfo = await allPokes();
     let infoIndex = allinfo.map((e) => {
       return {
@@ -88,8 +108,6 @@ router.get("/pokemons", async (req, res) => {
       };
     });
     res.status(200).send(infoIndex);
-  } catch (e) {
-    console.log(e);
   }
 });
 
@@ -98,7 +116,6 @@ router.get("/pokemons/:id", async (req, res) => {
     let id = req.params.id;
     if (id) {
       let allinfo = await allPokes();
-      console.log(allinfo);
       let detail = allinfo.filter((e) => {
         if (id == e.id) {
           return e;
@@ -110,5 +127,7 @@ router.get("/pokemons/:id", async (req, res) => {
     console.log(e);
   }
 });
+
+
 
 module.exports = router;
