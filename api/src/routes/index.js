@@ -39,10 +39,10 @@ const getPokes = async () => {
       peso,
     });
   }
-  return {
-    pokemon,
-  };
+  return pokemon
+  
 };
+
 
 
 let pokeDB = async () => {
@@ -61,7 +61,6 @@ let pokeDB = async () => {
     console.log(e);
   }
 };
-
 const allPokes = async () => {
   try {
     let Api = await getPokes();
@@ -73,17 +72,17 @@ const allPokes = async () => {
   }
 };
 
+allPokes().then(e=>console.log(e))
 
 // aqui iniciia el ruteo del backend */
 /*
 ♙♙♙♙♙♙♙♙
 ♖♘♗♔♕♗♘♖
-pero primero una partidita  de ajedrez
 */
 router.get("/pokemons", async (req, res) => {
   try {
     let allinfo = await allPokes();
-    let infoIndex =  allinfo[0].pokemon.map(e=>{
+    let infoIndex =  allinfo.map(e=>{
       return {
         name : e.name,
         img: e.img,
@@ -91,7 +90,7 @@ router.get("/pokemons", async (req, res) => {
         type:e.type
       }
     })
-    res.status(200).json(infoIndex);
+    res.status(200).send(infoIndex);
   } catch (e) {
     console.log(e);
   }
