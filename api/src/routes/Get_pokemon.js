@@ -151,5 +151,32 @@ router.post("/pokemons", async (req, res) => {
   res.status(200).send(response);
 });
 
+router.get('/types', async (req, res)=>{
+  let info = await  axios.get('https://pokeapi.co/api/v2/type')
+  console.log(info.data.results)
+   let types = info.data.results.map(e => e.name)
+
+   for (let i = 0; i < types.length; i++) {
+    Type.findOrCreate({
+      where: {
+        type: types[i],
+      },
+    });
+  }
+  const DBtypes = await Type.findAll();
+   res.status(200).json(DBtypes)
+})
+
+// for (let i = 0; i < infoGenres.length; i++) {
+//   Genere.findOrCreate({
+//     where: {
+//       name: infoGenres[i],
+//     },
+//   });
+// }
+// const getGenres = await Genere.findAll();
+// res.status(200).send(getGenres);
+
+
 
 module.exports =  router
