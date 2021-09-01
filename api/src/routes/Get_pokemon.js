@@ -1,112 +1,152 @@
 const axios = require("axios");
 const { Type, Pokemon } = require("../db");
-const { Router } =require ("express");
-const router= Router()
+const { Router } = require("express");
+const router = Router();
 
 const getPokes = async () => {
-    const req1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
-    const req2 = await axios.get(req1.data.next);
-    const allPokes = req1.data.results.concat(req2.data.results);
-    const pokemon = [];
-    for (let i = 0; i < allPokes.length; i++) {
-      let name =  allPokes[i].name;
-      let info = await axios.get(allPokes[i].url);
-      let img =  info.data.sprites.other.dream_world.front_default;
-      let type =  info.data.types.map((e) => e.type.name);
-      let id =  info.data.id;
-      let vida =  info.data.stats[0].base_stat;
-      let fuerza =  info.data.stats[1].base_stat;
-      let defensa =  info.data.stats[2].base_stat;
-      let velocidad =  info.data.stats[5].base_stat;
-      let altura =  info.data.height;
-      let peso =  info.data.weight;
-      pokemon.push({
-        name,
-        img,
-        type,
-        id,
-        vida,
-        fuerza,
-        defensa,
-        velocidad,
-        altura,
-        peso,
-      });
-    }
-    return pokemon;
-  };
-  
-  let pokeDB = async () => {
-    try {
-      let BD = await Pokemon.findAll({
-        includes: {
-          model: Type,
-          attributes: ["type"],
-          through: {
-            attibutes: [],
-          },
+  const pokemons = [];
+  for (let i = 1; i < 40; i++) {
+    const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    pokemons.push({
+      name: pokemon.data.name,
+      img: pokemon.data.sprites.other.dream_world.front_default,
+      type: pokemon.data.types.map((e) => e.type.name),
+      id: pokemon.data.id,
+      vida: pokemon.data.stats[0].base_stat,
+      fuerza: pokemon.data.stats[1].base_stat,
+      defensa: pokemon.data.stats[2].base_stat,
+      velocidad: pokemon.data.stats[5].base_stat,
+      altura: pokemon.data.height,
+      peso: pokemon.data.weight,
+    });
+  }
+  return pokemons;
+};
+
+let pokeDB = async () => {
+  try {
+    let BD = await Pokemon.findAll({
+      includes: {
+        model: Type,
+        attributes: ["type"],
+        through: {
+          attibutes: [],
         },
-      });
-      return BD;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const allPokes = async () => {
-    try {
-      let Api = await getPokes();
-      let DB = await pokeDB();
-      let all = DB.concat(Api);
-      return all;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  
-  // aqui iniciia el ruteo del backend */
-  /*
+      },
+    });
+    return BD;
+  } catch (e) {
+    console.log(e);
+  }
+};
+const allPokes = async () => {
+  try {
+    let Api = await getPokes();
+    let DB = await pokeDB();
+    let all = DB.concat(Api);
+    return all;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// aqui iniciia el ruteo del backend */
+/*
   ♙♙♙♙♙♙♙♙
   ♖♘♗♔♕♗♘♖
   */
-  router.get("/pokemons", async (req, res) => {
-    let name = req.query.name;
-    try {
-      if (name) {
-        name = name.toLowerCase();
-        let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        let detail = {
-          name: info.data.name,
-          img: info.data.sprites.other.dream_world.front_default,
-          type: info.data.types.map((e) => e.type.name),
-          id: info.data.id,
-          vida: info.data.stats[0].base_stat,
-          ataque: info.data.stats[0].base_stat,
-          defensa: info.data.stats[2].base_stat,
-          velocidad: info.data.stats[5].base_stat,
-          altura: info.data.height,
-          peso: info.data.weight,
-        };
-  
-        if (!detail) {
-          res.status(400).send("no encontrado");
-        } else {
-          res.status(200).send(detail);
-        }
-      } else {
-        let allinfo = await allPokes();
-        let infoIndex = allinfo.map((e) => {
-          return {
-            name: e.name,
-            img: e.img,
-            id: e.id,
-            type: e.type,
-          };
-        });
-        res.status(200).send(infoIndex);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  });
+router.get("/pokemons", async (req, res) => {
+  let name = req.query.name;
+  try {
+    if (name) {
+      name = name.toLowerCase();
 
-  module.exports = router
+      //  si name existe en la DB lo recibo y lo envio con un status 200  y send()
+      // caso contrario hago todo lo q esta aca abajo
+
+      let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      let detail = {
+        name: info.data.name,
+        img: info.data.sprites.other.dream_world.front_default,
+        type: info.data.types.map((e) => e.type.name),
+        id: info.data.id,
+      };
+      console.log(detail, "no anda");
+      if (!detail) {
+        res.status(200).send("no encontrado");
+      } else {
+        res.status(200).send(detail);
+      }
+    } else {
+      let allinfo = await allPokes();
+      let infoIndex = allinfo.map((e) => {
+        return {
+          name: e.name,
+          img: e.img,
+          id: e.id,
+          type: e.type,
+        };
+      });
+      res.status(200).send(infoIndex);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+
+
+router.get("/pokemons/:id", async (req, res) => {
+  try {
+    let id = req.params.id;
+    if (id) {
+      let allinfo = await allPokes();
+      let detail = allinfo.filter((e) => {
+        if (id == e.id) {
+          return e;
+        }
+      });
+      res.status(200).send(detail);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.post("/pokemons", async (req, res) => {
+  const {
+    name,
+    img,
+    type,
+    id,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+  } = req.body;
+  let newPokemon = await Pokemon.create({
+    name,
+    img,
+    id,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+    id: uuidv4(),
+  });
+  let typeDB = await Type.findAll({
+    where: {
+      type: type,
+    },
+  });
+   await newPokemon.addType(typeDB); 
+  const response =  await Pokemon.findAll({
+  include: Type
+  })
+  res.status(200).send(response);
+});
+module.exports =  router
