@@ -94,8 +94,6 @@ router.get("/pokemons", async (req, res) => {
   }
 });
 
-
-
 router.get("/pokemons/:id", async (req, res) => {
   try {
     let id = req.params.id;
@@ -149,4 +147,6 @@ router.post("/pokemons", async (req, res) => {
   })
   res.status(200).send(response);
 });
+
+
 module.exports =  router

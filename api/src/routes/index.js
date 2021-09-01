@@ -10,4 +10,5 @@ const router = Router();
 // Configurar los routers
  router.use('/', Get_Pokemon);
 
+
 module.exports = router;
