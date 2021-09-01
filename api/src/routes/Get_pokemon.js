@@ -2,6 +2,7 @@ const axios = require("axios");
 const { Type, Pokemon } = require("../db");
 const { Router } = require("express");
 const router = Router();
+const { v4: uuidv4 } = require("uuid");
 
 const getPokes = async () => {
   const pokemons = [];
@@ -118,6 +119,7 @@ router.post("/pokemons", async (req, res) => {
     type,
     id,
     vida,
+    fuerza,
     ataque,
     defensa,
     velocidad,
@@ -129,6 +131,7 @@ router.post("/pokemons", async (req, res) => {
     img,
     id,
     vida,
+    fuerza,
     ataque,
     defensa,
     velocidad,
