@@ -3,12 +3,12 @@ let initialState = {
   types: [],
 };
 
-function rootReducer(state = initialState, actios) {
+function rootReducer(state = initialState, actions) {
   switch (actions.type) {
     case "GET_POKEMONS":
       return {
         ...state,
-        pokemons: actios.payload,
+        pokemons: actions.payload,
       };
 
     default:

@@ -1,16 +1,16 @@
 import axios from "axios"
 
-function Get_Elements  (){
+export  function Get_Elements  (){
     
 
    
 
     return async function (dispatch){
 
-        let allgames = axios.get('http://localhost:3001/pokemons')
+        let allpokemons =  await axios.get('http://localhost:3001/pokemons',{})
         return dispatch({
             type: 'GET_POKEMONS',
-            PAYLOAD: allgames.data
+            payload: allpokemons.data
         })
     }
 }
