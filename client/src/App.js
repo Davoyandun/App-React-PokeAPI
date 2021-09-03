@@ -1,11 +1,14 @@
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import LandingPg from './components/LandingPg'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <LandingPg/>
+      </div>
+    </BrowserRouter>
   );
 }
-
 export default App;
