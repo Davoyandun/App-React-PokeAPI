@@ -15,3 +15,10 @@ export function filter_Type(payload) {
     payload: payload,
   };
 }
+
+export function filter_created(payload){
+  return{
+    type: 'FILTER_CREATED',
+    payload,
+  }
+}

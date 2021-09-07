@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
 import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
-import { Get_Elements, filter_Type} from "../actions";
+import { Get_Elements, filter_Type, filter_created} from "../actions";
 import Card from "./Card";
 import Paginate from "./Paginate";
 
@@ -40,6 +40,9 @@ export default function Home() {
   function handlerFilterTypes(e){
      dispatch(filter_Type(e.target.value))
   }
+  function handlerFilterCreated(e){
+    dispatch(filter_Type(e.target.value))
+ }
 
   return (
     <div>
@@ -68,10 +71,10 @@ export default function Home() {
           <option value="top">Mas fuerte </option>
           <option value="bot">Mas Debil </option>
         </select>
-        <select name="source" id="source">
+        <select  onChange ={e=>handlerFilterCreated(e)}>
           <option value="all">Todos</option>
-          <option value="api">Existente</option>
-          <option value="db">Nuevo</option>
+          <option value="api">Canon</option>
+          <option value="db">Creados</option>
         </select>
         <select onChange ={e=>handlerFilterTypes(e)}>
         <option value="all">all</option>

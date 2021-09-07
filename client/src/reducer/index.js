@@ -1,6 +1,6 @@
 let initialState = {
   pokemons: [],
-  allpokemons :[],
+  allpokemons: [],
   types: [],
 };
 
@@ -10,8 +10,7 @@ function rootReducer(state = initialState, actions) {
       return {
         ...state,
         pokemons: actions.payload,
-        allpokemons :actions.payload,
-
+        allpokemons: actions.payload,
       };
 
     case "FILTER_TYPE":
@@ -19,12 +18,25 @@ function rootReducer(state = initialState, actions) {
       let types =
         actions.payload === "all"
           ? allpokemons
-          : allpokemons.filter(e => e.type.includes(actions.payload)=== true);
-      console.log(types);
+          : allpokemons.filter(
+              (e) => e.type.includes(actions.payload) === true
+            );
+    
       return {
         ...state,
         pokemons: types,
       };
+
+    case "FILTER_CREATED":
+      let allpokemons2 = state.allpokemons;
+      let created =
+        actions.payload === "db"
+          ? allpokemons2.filter((e) => e.createDB)
+          : allpokemons2.filter((e) => !e.createDB);
+          return {
+            ...state,
+            pokemons : created
+          }
 
     default:
       return state;
