@@ -14,3 +14,9 @@ export  function Get_Elements  (){
         })
     }
 }
+export function  Get_Type (payload){
+    return{
+        type: 'GET_TYPE',
+        payload,
+    }
+}

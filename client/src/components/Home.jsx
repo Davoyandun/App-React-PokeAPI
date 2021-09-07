@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
 import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
-import { Get_Elements } from "../actions";
+import { Get_Elements, Get_Type } from "../actions";
 import Card from "./Card";
 import Paginate from "./Paginate";
 
@@ -35,7 +35,11 @@ export default function Home() {
     e.preventDefault();
     dispatch(Get_Elements());
   }
-  console.log(pokemons);
+ 
+  function handlerGetTypes(e){
+    e.preventDefault()
+     dispatch(Get_Type(e.target.value))
+  }
 
   return (
     <div>
@@ -69,7 +73,8 @@ export default function Home() {
           <option value="api">Existente</option>
           <option value="db">Nuevo</option>
         </select>
-        <select name="type" id="type">
+        <select name="type" id="type" onChange ={e=>handlerGetTypes(e)}>
+        <option value="all">all</option>
           <option value="normal">normal</option>
           <option value="flying">fighting</option>
           <option value="poison">poison</option>
