@@ -1,5 +1,6 @@
 let initialState = {
   pokemons: [],
+  allpokemons :[],
   types: [],
 };
 
@@ -9,15 +10,17 @@ function rootReducer(state = initialState, actions) {
       return {
         ...state,
         pokemons: actions.payload,
+        allpokemons :actions.payload,
+
       };
 
-    case "GET_TYPE":
-      let allpokemons = state.pokemons;
-
+    case "FILTER_TYPE":
+      let allpokemons = state.allpokemons;
       let types =
         actions.payload === "all"
           ? allpokemons
-          : allpokemons.filter((e) => e.type === actions.payload);
+          : allpokemons.filter(e => e.type.includes(actions.payload)=== true);
+      console.log(types);
       return {
         ...state,
         pokemons: types,
