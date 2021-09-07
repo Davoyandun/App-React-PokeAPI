@@ -1,4 +1,6 @@
 import React, { Fragment } from "react";
+// 1.- React es el la libreria js para desarrollo frontend, en base a componentes y una sola pagina.
+//2.- Fragment, permite agrupar sin agregar nodos, sustituye al div, sin colocar mas etiquetas
 import { useState, useEffect } from "react";
 // 1.- para el uso de variables de estado locales
 // 2.- para montar los componentes, antes durante o despues de la renderizacion.
@@ -9,21 +11,31 @@ import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
 import { Get_Elements } from "../actions";
 import Card from "./Card";
+import Paginate from "./Paginate";
 
 export default function Home() {
   const dispatch = useDispatch();
-const pokemons = useSelector((state) => state.pokemons);
+  const pokemons = useSelector((state) => state.pokemons);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(9);
+  const lastItem = currentPage * itemsPerPage;
+  const firstItem = lastItem - itemsPerPage;
+  const itemInPage = pokemons.slice(firstItem, lastItem);
+
+  const paginado = (number) => {
+    setCurrentPage(number);
+  };
+
   useEffect(() => {
     dispatch(Get_Elements());
   }, [dispatch]);
 
-
-  
   function handleRefresh(e) {
     e.preventDefault();
     dispatch(Get_Elements());
   }
-  console.log(pokemons)
+  console.log(pokemons);
 
   return (
     <div>
@@ -80,8 +92,8 @@ const pokemons = useSelector((state) => state.pokemons);
         </select>
       </div>
       <div>
-        {pokemons &&
-          pokemons.map((e) => {
+        {itemInPage &&
+          itemInPage.map((e) => {
             return (
               <Fragment>
                 <Link to={"/home/" + e.id}>
@@ -90,6 +102,13 @@ const pokemons = useSelector((state) => state.pokemons);
               </Fragment>
             );
           })}
+      </div>
+      <div>
+        <Paginate
+          pokemons={pokemons.length}
+          itemsPerPage={itemsPerPage}
+          paginado={paginado}
+        />
       </div>
     </div>
   );
