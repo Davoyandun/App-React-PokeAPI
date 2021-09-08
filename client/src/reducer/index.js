@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 let initialState = {
   pokemons: [],
   allpokemons: [],
@@ -21,7 +23,7 @@ function rootReducer(state = initialState, actions) {
           : allpokemons.filter(
               (e) => e.type.includes(actions.payload) === true
             );
-    
+
       return {
         ...state,
         pokemons: types,
@@ -29,14 +31,25 @@ function rootReducer(state = initialState, actions) {
 
     case "FILTER_CREATED":
       let allpokemons2 = state.allpokemons;
-      let created =
-        actions.payload === "db"
-          ? allpokemons2.filter((e) => e.createDB)
-          : allpokemons2.filter((e) => !e.createDB);
-          return {
-            ...state,
-            pokemons : created
-          }
+
+      if (actions.payload === "db") {
+        allpokemons2 = allpokemons2.filter((e) => typeof e.id == "string");
+        return {
+          ...state,
+          pokemons: allpokemons2,
+        };
+      } else if (!isNaN(actions.payload)) {
+        allpokemons2 = allpokemons2.filter((e) => !typeof e.id == "string");
+        return {
+          ...state,
+          pokemons: allpokemons2,
+        };
+      } else {
+        return {
+          ...state,
+          pokemons: allpokemons2,
+        };
+      }
 
     default:
       return state;

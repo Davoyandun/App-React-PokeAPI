@@ -79,7 +79,8 @@ export default function Home() {
         <select onChange ={e=>handlerFilterTypes(e)}>
         <option value="all">all</option>
           <option value="normal">normal</option>
-          <option value="flying">fighting</option>
+          <option value="fighting">fighting</option>
+          <option value="flying">flying</option>
           <option value="poison">poison</option>
           <option value="ground">ground</option>
           <option value="rock">rock</option>
