@@ -33,7 +33,7 @@ let created = []
     for (let i = 0; i < BD.length; i++) {
       created.push({
          name : BD[i].name,
-    img : 'https://64.media.tumblr.com/12462ed76c81e446265cd717f9573ef1/tumblr_p9zl01erpl1tw9b56o1_1280.jpg',
+    img : 'https://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg',
     type:BD[i].types.map(e => e.type),
     id: BD[i].id,
     vida:BD[i].vida,
