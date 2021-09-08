@@ -105,7 +105,7 @@ export default function Home() {
             return (
               <Fragment>
                 <Link to={"/home/" + e.id}>
-                  <Card name={e.name} img={e.img} type={e.type} />
+                  <Card name={e.name} img={e.img} type={e.type} fuerza ={e.fuerza} />
                 </Link>
               </Fragment>
             );
