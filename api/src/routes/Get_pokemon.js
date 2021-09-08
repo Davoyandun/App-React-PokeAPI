@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const getPokes = async () => {
   const pokemons = [];
-  for (let i = 1; i < 40; i++) {
+  for (let i = 1; i <= 40; i++) {
     const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
     pokemons.push({
       name: pokemon.data.name,
@@ -27,19 +27,32 @@ const getPokes = async () => {
 let pokeDB = async () => {
   try {
     let BD = await Pokemon.findAll({
-      includes: {
-        model: Type,
-        attributes: ["type"],
-        through: {
-          attibutes: [],
-        },
-      },
-    });
-    return BD;
+      include: Type
+      });
+let created = []
+    for (let i = 0; i < BD.length; i++) {
+      created.push({
+         name : BD[i].name,
+    img : 'https://64.media.tumblr.com/12462ed76c81e446265cd717f9573ef1/tumblr_p9zl01erpl1tw9b56o1_1280.jpg',
+    type:BD[i].types.map(e => e.type),
+    id: BD[i].id,
+    vida:BD[i].vida,
+    fuerza:BD[i].fuerza,
+    ataque:BD[i].ataque,
+    defensa:BD[i].defensa,
+    velocidad:BD[i].velocidad,  
+    altura:BD[i].altura,
+    peso:BD[i].peso,
+      })
+ 
+      
+    }
+    return created;
   } catch (e) {
-    console.log(e);
+    console.log('hola',e);
   }
 };
+pokeDB().then(e=>console.log('este es ', e))
 const allPokes = async () => {
   try {
     let Api = await getPokes();
@@ -85,6 +98,7 @@ router.get("/pokemons", async (req, res) => {
           name: e.name,
           img: e.img,
           id: e.id,
+          fuerza:e.fuerza,
           type: e.type,
         };
       });
@@ -166,17 +180,6 @@ router.get('/types', async (req, res)=>{
   const DBtypes = await Type.findAll();
    res.status(200).json(DBtypes)
 })
-
-// for (let i = 0; i < infoGenres.length; i++) {
-//   Genere.findOrCreate({
-//     where: {
-//       name: infoGenres[i],
-//     },
-//   });
-// }
-// const getGenres = await Genere.findAll();
-// res.status(200).send(getGenres);
-
 
 
 module.exports =  router
