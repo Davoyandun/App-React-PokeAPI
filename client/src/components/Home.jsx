@@ -9,14 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
 import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
-import { Get_Elements, filter_Type, filter_created} from "../actions";
+import { Get_Elements, filter_Type, filter_Created } from "../actions";
 import Card from "./Card";
 import Paginate from "./Paginate";
 
 export default function Home() {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons);
- 
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
@@ -36,13 +35,13 @@ export default function Home() {
     e.preventDefault();
     dispatch(Get_Elements());
   }
- 
-  function handlerFilterTypes(e){
-     dispatch(filter_Type(e.target.value))
+
+  function handlerFilterTypes(e) {
+    dispatch(filter_Type(e.target.value));
   }
-  function handlerFilterCreated(e){
-    dispatch(filter_Type(e.target.value))
- }
+  function handlerFilterCreated(e) {
+    dispatch(filter_Created(e.target.value));
+  }
 
   return (
     <div>
@@ -71,13 +70,13 @@ export default function Home() {
           <option value="top">Mas fuerte </option>
           <option value="bot">Mas Debil </option>
         </select>
-        <select  onChange ={e=>handlerFilterCreated(e)}>
+        <select onChange={(e) => handlerFilterCreated(e)}>
           <option value="all">Todos</option>
           <option value="api">Canon</option>
           <option value="db">Creados</option>
         </select>
-        <select onChange ={e=>handlerFilterTypes(e)}>
-        <option value="all">all</option>
+        <select onChange={(e) => handlerFilterTypes(e)}>
+          <option value="all">all</option>
           <option value="normal">normal</option>
           <option value="fighting">fighting</option>
           <option value="flying">flying</option>
@@ -106,7 +105,12 @@ export default function Home() {
             return (
               <Fragment>
                 <Link to={"/home/" + e.id}>
-                  <Card name={e.name} img={e.img} type={e.type} fuerza ={e.fuerza} />
+                  <Card
+                    name={e.name}
+                    img={e.img}
+                    type={e.type}
+                    fuerza={e.fuerza}
+                  />
                 </Link>
               </Fragment>
             );

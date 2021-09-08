@@ -16,9 +16,9 @@ export function filter_Type(payload) {
   };
 }
 
-export function filter_created(payload){
+export function filter_Created(payload){
   return{
     type: 'FILTER_CREATED',
-    payload,
+    payload: payload
   }
 }
