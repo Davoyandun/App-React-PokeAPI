@@ -1,6 +1,3 @@
-
-
-
 let initialState = {
   pokemons: [],
   allpokemons: [], // no modificar
@@ -54,28 +51,29 @@ function rootReducer(state = initialState, actions) {
 
     case "ORDER_FUERZA":
       let orderFuerza = state.allpokemons;
-      if(actions.payload === 'top'){
-        orderFuerza= orderFuerza.sort(function(a,b){
-        if (a.fuerza < b.fuerza) {
-          return 1;
-        }
-        if (a.fuerza > b.fuerza) {
-          return -1;
-        }
-        return 0
-      })
-      } else  if(actions.payload === 'bot'){
-        orderFuerza= orderFuerza.sort(function(a,b){
-        if (a.fuerza > b.fuerza) {
-          return 1;
-        }
-        if (a.fuerza < b.fuerza) {
-          return -1;
-        }
-        return 0
-      })
-      } else if(actions.payload === 'all') {
-        orderFuerza = state.allpokemons
+      if(actions.payload==='all'){
+          orderFuerza= state.allpokemons;
+      }else
+      if (actions.payload === "top") {
+        orderFuerza = orderFuerza.sort(function (a, b) {
+          if (a.fuerza < b.fuerza) {
+            return 1;
+          }
+          if (a.fuerza > b.fuerza) {
+            return -1;
+          }
+          return 0;
+        });
+      } else if (actions.payload === "bot") {
+        orderFuerza = orderFuerza.sort(function (a, b) {
+          if (a.fuerza > b.fuerza) {
+            return 1;
+          }
+          if (a.fuerza < b.fuerza) {
+            return -1;
+          }
+          return 0;
+        });
       }
 
       return {
