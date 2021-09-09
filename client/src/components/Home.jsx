@@ -16,8 +16,11 @@ import {
   Order_Fuerza,
   Order_Name,
 } from "../actions";
+
+/* importacion de componentes  */
 import Card from "./Card";
 import Paginate from "./Paginate";
+import NavBar from "./NavBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -76,14 +79,11 @@ export default function Home() {
         Pedir pokemons al Profesor Oak
       </button>
       <div>
-        <label>
-          <input type="text" />
-          <button>Buscar</button>
-        </label>
+      <NavBar/>
         <select onChange={(e) => handlerOrderName(e)}>
         
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
+          <option value="desc">A-Z</option>
+          <option value="asc">Z-A</option>
         </select>
         <select onChange={(e) => handlerOrderFuerza(e)}>
      
