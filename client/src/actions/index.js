@@ -2,23 +2,30 @@ import axios from "axios";
 
 export function Get_Elements() {
   return async function (dispatch) {
-    let allpokemons = await axios.get("http://localhost:3001/pokemons", {});
+    let allpokemons = await axios.get("http://localhost:3001/pokemons", );
     return dispatch({
       type: "GET_POKEMONS",
       payload: allpokemons.data,
     });
   };
 }
-export function filter_Type(payload) {
+export function Filter_Type(payload) {
   return {
     type: "FILTER_TYPE",
     payload: payload,
   };
 }
 
-export function filter_Created(payload){
+export function Filter_Created(payload){
   return{
     type: 'FILTER_CREATED',
     payload: payload
   }
+}
+export function Order_Fuerza(payload){
+  return{
+    type: 'ORDER_FUERZA',
+    payload,
+  }
+
 }

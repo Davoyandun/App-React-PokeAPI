@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
 import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
-import { Get_Elements, filter_Type, filter_Created } from "../actions";
+import { Get_Elements, Filter_Type, Filter_Created, Order_Fuerza } from "../actions";
 import Card from "./Card";
 import Paginate from "./Paginate";
 
@@ -37,10 +37,14 @@ export default function Home() {
   }
 
   function handlerFilterTypes(e) {
-    dispatch(filter_Type(e.target.value));
+    dispatch(Filter_Type(e.target.value));
   }
   function handlerFilterCreated(e) {
-    dispatch(filter_Created(e.target.value));
+    dispatch(Filter_Created(e.target.value));
+  }
+
+  function handlerOrderFuerza(e) {
+    dispatch(Order_Fuerza(e.target.value));
   }
 
   return (
@@ -66,9 +70,10 @@ export default function Home() {
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <select name="fuerza" id="">
-          <option value="top">Mas fuerte </option>
-          <option value="bot">Mas Debil </option>
+        <select  onChange={(e) => handlerOrderFuerza(e)}>
+        <option value="all">Todos </option>
+          <option value="top">Fuertes primero </option>
+          <option value="bot"> Debil primero </option>
         </select>
         <select onChange={(e) => handlerFilterCreated(e)}>
           <option value="all">Todos</option>
@@ -78,8 +83,8 @@ export default function Home() {
         <select onChange={(e) => handlerFilterTypes(e)}>
           <option value="all">all</option>
           <option value="normal">normal</option>
-          <option value="fighting">fighting</option>
           <option value="flying">flying</option>
+          <option value="fighting">fighting</option>
           <option value="poison">poison</option>
           <option value="ground">ground</option>
           <option value="rock">rock</option>
