@@ -48,14 +48,17 @@ function rootReducer(state = initialState, actions) {
           pokemons: allpokemons2,
         };
       }
+    
 
     case "ORDER_FUERZA":
       let orderFuerza = state.allpokemons;
-      if(actions.payload==='all'){
-          orderFuerza= state.allpokemons;
-      }else
-      if (actions.payload === "top") {
-        orderFuerza = orderFuerza.sort(function (a, b) {
+      if (actions.payload === "all") {
+        return {
+          ...state,
+          pokemons: state.allpokemons,
+        };
+      } else if (actions.payload === "top") {
+        let top = orderFuerza.sort(function (a, b) {
           if (a.fuerza < b.fuerza) {
             return 1;
           }
@@ -64,8 +67,12 @@ function rootReducer(state = initialState, actions) {
           }
           return 0;
         });
+        return {
+          ...state,
+          pokemons: top,
+        };
       } else if (actions.payload === "bot") {
-        orderFuerza = orderFuerza.sort(function (a, b) {
+        let bot = orderFuerza.sort(function (a, b) {
           if (a.fuerza > b.fuerza) {
             return 1;
           }
@@ -74,16 +81,55 @@ function rootReducer(state = initialState, actions) {
           }
           return 0;
         });
-      }
+        return {
+          ...state,
+          pokemons: bot,
+        };
+      } break; 
+      case 'ORDER_NAME':
+        let orderName = state.allpokemons;
+        if (actions.payload === "all") {
+          return {
+            ...state,
+            pokemons: state.allpokemons,
+          };
+        } else if (actions.payload === "asc") {
+          let asc = orderName.sort(function (a, b) {
+            if (a.name < b.name) {
+              return 1;
+            }
+            if (a.name > b.name) {
+              return -1;
+            }
+            return 0;
+          });
+          return {
+            ...state,
+            pokemons: asc,
+          };
+        } else if (actions.payload === "desc") {
+          let desc = orderName.sort(function (a, b) {
+            if (a.name > b.name) {
+              return 1;
+            }
+            if (a.name < b.name) {
+              return -1;
+            }
+            return 0;
+          });
+          return {
+            ...state,
+            pokemons: desc,
+          };
+        } break; 
 
-      return {
-        ...state,
-        pokemons: orderFuerza,
-      };
+
+
 
     default:
       return state;
   }
+
 }
 
 export default rootReducer;

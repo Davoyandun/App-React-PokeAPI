@@ -29,3 +29,10 @@ export function Order_Fuerza(payload){
   }
 
 }
+export function Order_Name(payload){
+  return{
+    type: 'ORDER_NAME',
+    payload,
+  }
+
+}

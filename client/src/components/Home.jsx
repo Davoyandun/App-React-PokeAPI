@@ -9,7 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
 import { Link } from "react-router-dom";
 // 1.- para el enrutamiento de react
-import { Get_Elements, Filter_Type, Filter_Created, Order_Fuerza } from "../actions";
+import {
+  Get_Elements,
+  Filter_Type,
+  Filter_Created,
+  Order_Fuerza,
+  Order_Name,
+} from "../actions";
 import Card from "./Card";
 import Paginate from "./Paginate";
 
@@ -41,10 +47,18 @@ export default function Home() {
   }
   function handlerFilterCreated(e) {
     dispatch(Filter_Created(e.target.value));
+    setCurrentPage(1);
   }
 
   function handlerOrderFuerza(e) {
+    e.preventDefault();
     dispatch(Order_Fuerza(e.target.value));
+    setCurrentPage(1);
+  }
+  function handlerOrderName(e) {
+    e.preventDefault();
+    dispatch(Order_Name(e.target.value));
+    setCurrentPage(1);
   }
 
   return (
@@ -66,12 +80,13 @@ export default function Home() {
           <input type="text" />
           <button>Buscar</button>
         </label>
-        <select name="alfabet" id="">
+        <select onChange={(e) => handlerOrderName(e)}>
+        
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
         </select>
-        <select  onChange={(e) => handlerOrderFuerza(e)}>
-        <option value="all">Todos </option>
+        <select onChange={(e) => handlerOrderFuerza(e)}>
+     
           <option value="top">Fuertes primero </option>
           <option value="bot"> Debil primero </option>
         </select>
