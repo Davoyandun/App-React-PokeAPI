@@ -48,7 +48,6 @@ function rootReducer(state = initialState, actions) {
           pokemons: allpokemons2,
         };
       }
-    
 
     case "ORDER_FUERZA":
       let orderFuerza = state.allpokemons;
@@ -85,51 +84,65 @@ function rootReducer(state = initialState, actions) {
           ...state,
           pokemons: bot,
         };
-      } break; 
-      case 'ORDER_NAME':
-        let orderName = state.allpokemons;
-        if (actions.payload === "all") {
-          return {
-            ...state,
-            pokemons: state.allpokemons,
-          };
-        } else if (actions.payload === "asc") {
-          let asc = orderName.sort(function (a, b) {
-            if (a.name < b.name) {
-              return 1;
-            }
-            if (a.name > b.name) {
-              return -1;
-            }
-            return 0;
-          });
-          return {
-            ...state,
-            pokemons: asc,
-          };
-        } else if (actions.payload === "desc") {
-          let desc = orderName.sort(function (a, b) {
-            if (a.name > b.name) {
-              return 1;
-            }
-            if (a.name < b.name) {
-              return -1;
-            }
-            return 0;
-          });
-          return {
-            ...state,
-            pokemons: desc,
-          };
-        } break; 
+      }
+      break;
+    case "ORDER_NAME":
+      let orderName = state.allpokemons;
+      if (actions.payload === "all") {
+        let original = orderName.sort(function (a, b) {
+          if (a.id < b.id) {
+            return 1;
+          }
+          if (a.id > b.id) {
+            return -1;
+          }
+          return 0;
+        });
 
+        return {
+          ...state,
+          pokemons: original,
+        };
+      } else if (actions.payload === "asc") {
+        let asc = orderName.sort(function (a, b) {
+          if (a.name < b.name) {
+            return 1;
+          }
+          if (a.name > b.name) {
+            return -1;
+          }
+          return 0;
+        });
+        return {
+          ...state,
+          pokemons: asc,
+        };
+      } else if (actions.payload === "desc") {
+        let desc = orderName.sort(function (a, b) {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 0;
+        });
+        return {
+          ...state,
+          pokemons: desc,
+        };
+      }
+      break;
 
-
+    case "GET_NAME":
+      return {
+        ...state,
+        pokemons: [actions.payload],
+      };
 
     default:
       return state;
   }
-
 }
 
 export default rootReducer;

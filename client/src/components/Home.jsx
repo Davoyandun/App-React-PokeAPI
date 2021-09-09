@@ -81,9 +81,8 @@ export default function Home() {
       <div>
       <NavBar/>
         <select onChange={(e) => handlerOrderName(e)}>
-        
-          <option value="desc">A-Z</option>
           <option value="asc">Z-A</option>
+          <option value="desc">A-Z</option>
         </select>
         <select onChange={(e) => handlerOrderFuerza(e)}>
      
