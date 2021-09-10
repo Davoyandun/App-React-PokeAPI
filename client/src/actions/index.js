@@ -45,3 +45,22 @@ export function Get_name (value){
   };
 
 }
+export function Get_Types (value){
+  return async function (dispatch) {
+    let types = await axios.get('http://localhost:3001/types' );
+    return dispatch({
+      type: "GET_TYPES",
+      payload: types.data, 
+    });
+  };
+
+}
+
+export function Post_pokemon (payload){
+  return async function (dispatch) {
+    let types = await axios.get('http://localhost:3001/pokemons',payload );
+    return types
+    };
+  };
+
+

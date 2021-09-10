@@ -67,8 +67,8 @@ export default function Home() {
   return (
     <div>
       <h1>Preparense para los Problemas</h1>
-      <Link to="/pokemon">
-        <button>Crear personaje</button>
+      <Link to="/creator">
+        <button>Registrar Nuevo Pokémon en el Pokédex</button>
       </Link>
       <br></br>
       <button

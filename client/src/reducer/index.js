@@ -1,6 +1,7 @@
 let initialState = {
   pokemons: [],
   allpokemons: [], // no modificar
+  types:[],
 };
 
 function rootReducer(state = initialState, actions) {
@@ -20,7 +21,6 @@ function rootReducer(state = initialState, actions) {
           : allpokemons.filter(
               (e) => e.type.includes(actions.payload) === true
             );
-
       return {
         ...state,
         pokemons: types,
@@ -86,6 +86,7 @@ function rootReducer(state = initialState, actions) {
         };
       }
       break;
+
     case "ORDER_NAME":
       let orderName = state.allpokemons;
       if (actions.payload === "all") {
@@ -138,6 +139,11 @@ function rootReducer(state = initialState, actions) {
       return {
         ...state,
         pokemons: [actions.payload],
+      };
+      case "GET_TYPES":
+      return {
+        ...state,
+        types: actions.payload,
       };
 
     default:
