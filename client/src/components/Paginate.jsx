@@ -5,7 +5,6 @@ export default function Paginate({ itemsPerPage, pokemons, paginado }) {
   for (let i = 1; i <= Math.ceil(pokemons / itemsPerPage); i++) {
     number.push(i);
   }
-
   return (
     <nav>
       <ul>

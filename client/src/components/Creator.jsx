@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Get_Types } from "../actions";
+import { Get_Types, Post_Pokemon } from "../actions";
 
 export default function Creator() {
   let dispatch = useDispatch();
@@ -19,7 +19,6 @@ export default function Creator() {
     altura: "",
     peso: "",
   });
-
   useEffect(() => {
     dispatch(Get_Types());
   }, [dispatch]);
@@ -30,7 +29,6 @@ export default function Creator() {
       [e.target.name]: e.target.value,
     });
 
-    console.log(input);
   }
   function handlerType(e) {
     if (e.target.checked) {
@@ -40,13 +38,17 @@ export default function Creator() {
       });
     }
   }
+  function handlerSubmit(e){
+    e.preventDefault()
+    dispatch(Post_Pokemon(input))
+  }
   return (
     <Fragment>
       <Link to="/home">
         <button>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
-      <form>
+      <form onSubmit= {(e)=>handlerSubmit(e)}>
         <div>
           <label> Agrega un Nombre</label>
           <input
@@ -140,12 +142,12 @@ export default function Creator() {
         <div>
           <h3>Seleccione el tipo</h3>
           {types.map((e) => (
-            <label onChange={(e) => handlerType(e)}>
+            <label onChange={(e) => handlerType(e)} key = {e.id}>
               <input type="checkbox" value={e.type} name="type" /> {e.type}
             </label>
           ))}
         </div>
-        <button type="submit"> Enviar Formulario</button>
+        <button type="submit"   > Enviar Formulario</button>
       </form>
     </Fragment>
   );
