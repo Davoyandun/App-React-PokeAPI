@@ -50,18 +50,12 @@ export default function Home() {
   }
   function handlerFilterCreated(e) {
     dispatch(Filter_Created(e.target.value));
-    setCurrentPage(1);
   }
-
   function handlerOrderFuerza(e) {
-    e.preventDefault();
     dispatch(Order_Fuerza(e.target.value));
-    setCurrentPage(1);
   }
   function handlerOrderName(e) {
-    e.preventDefault();
     dispatch(Order_Name(e.target.value));
-    setCurrentPage(1);
   }
 
   return (
@@ -85,7 +79,6 @@ export default function Home() {
           <option value="desc">A-Z</option>
         </select>
         <select onChange={(e) => handlerOrderFuerza(e)}>
-     
           <option value="top">Fuertes primero </option>
           <option value="bot"> Debil primero </option>
         </select>
@@ -117,6 +110,7 @@ export default function Home() {
           <option value="unknown">unknown</option>
           <option value="shadow">shadow</option>
         </select>
+   
       </div>
       <div>
         {itemInPage &&
