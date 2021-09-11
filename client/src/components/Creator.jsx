@@ -41,6 +41,19 @@ export default function Creator() {
   function handlerSubmit(e){
     e.preventDefault()
     dispatch(Post_Pokemon(input))
+    setInput({
+      img: "No found",
+      name: "",
+      type: [],
+      id: Math.random(),
+      vida: "",
+      fuerza: "",
+      ataque: "",
+      defensa: "",
+      velocidad: "",
+      altura: "",
+      peso: "",
+    })
   }
   return (
     <Fragment>

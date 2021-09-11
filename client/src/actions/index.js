@@ -58,8 +58,12 @@ export function Get_Types (value){
 
 export function Post_Pokemon (payload){
   return async function (dispatch) {
-    let types = await axios.get('http://localhost:3001/pokemons',payload );
-    return types
+    let types = await axios.post('http://localhost:3001/pokemons',payload );
+   console.log(types)
+    return dispatch({
+      type: 'POST_POKEMONS',
+      payload 
+    })
     };
   };
 
