@@ -2,6 +2,7 @@ let initialState = {
   pokemons: [],
   allpokemons: [], // no modificar
   types:[],
+  id: []
 };
 
 function rootReducer(state = initialState, actions) {
@@ -150,6 +151,11 @@ function rootReducer(state = initialState, actions) {
           ...state,
           pokemons: actions.payload
         }
+        case 'GET_ID':
+          return{
+            ...state,
+            id : actions.payload
+          }
 
     default:
       return state;

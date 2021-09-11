@@ -28,7 +28,6 @@ export default function Creator() {
       ...input,
       [e.target.name]: e.target.value,
     });
-
   }
   function handlerType(e) {
     if (e.target.checked) {
@@ -38,9 +37,9 @@ export default function Creator() {
       });
     }
   }
-  function handlerSubmit(e){
-    e.preventDefault()
-    dispatch(Post_Pokemon(input))
+  function handlerSubmit(e) {
+    e.preventDefault();
+    dispatch(Post_Pokemon(input));
     setInput({
       img: "No found",
       name: "",
@@ -53,7 +52,7 @@ export default function Creator() {
       velocidad: "",
       altura: "",
       peso: "",
-    })
+    });
   }
   return (
     <Fragment>
@@ -61,7 +60,7 @@ export default function Creator() {
         <button>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
-      <form onSubmit= {(e)=>handlerSubmit(e)}>
+      <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
           <label> Agrega un Nombre</label>
           <input
@@ -70,10 +69,11 @@ export default function Creator() {
             name="name"
             onChange={(e) => handlerSave(e)}
           />
-          {
-            !input.name? <output> ingrese un nombre</output>: 
+          {!input.name ? (
+            <output> ingrese un nombre</output>
+          ) : (
             <output> nombre aceptado</output>
-          }
+          )}
         </div>
         <div>
           <label> Nivel de Vida</label>
@@ -85,7 +85,7 @@ export default function Creator() {
             name="vida"
             onChange={(e) => handlerSave(e)}
           />
-        <output>{input.vida} pts de vida</output>
+          <output>{input.vida} pts de vida</output>
         </div>
         <div>
           <label> Nivel de Fuerza</label>
@@ -98,7 +98,7 @@ export default function Creator() {
             name="fuerza"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.fuerza} pts de fuerza</output>
+          <output>{input.fuerza} pts de fuerza</output>
         </div>
         <div>
           <label> Nivel de Ataque</label>
@@ -111,7 +111,7 @@ export default function Creator() {
             name="ataque"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.ataque} pts de daño</output>
+          <output>{input.ataque} pts de daño</output>
         </div>
         <div>
           <label> Nivel de Defenza</label>
@@ -123,7 +123,7 @@ export default function Creator() {
             name="defensa"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.defensa } escudo</output>
+          <output>{input.defensa} escudo</output>
         </div>
         <div>
           <label> Velocidad Maxima</label>
@@ -135,7 +135,7 @@ export default function Creator() {
             name="velocidad"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.velocidad } km/h</output>
+          <output>{input.velocidad} km/h</output>
         </div>
         <div>
           <label> Altura</label>
@@ -147,8 +147,7 @@ export default function Creator() {
             name="altura"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.altura } cm</output>
-     
+          <output>{input.altura} cm</output>
         </div>
         <div>
           <label> Peso</label>
@@ -160,18 +159,18 @@ export default function Creator() {
             name="peso"
             onChange={(e) => handlerSave(e)}
           />
-                <output>{input.peso } kg</output>
+          <output>{input.peso} kg</output>
           {/* kg*/}
         </div>
         <div>
           <h3>Seleccione el tipo</h3>
           {types.map((e) => (
-            <label onChange={(e) => handlerType(e)} key = {e.id}>
+            <label onChange={(e) => handlerType(e)} key={e.id}>
               <input type="checkbox" value={e.type} name="type" /> {e.type}
             </label>
           ))}
         </div>
-        <button type="submit"   > Enviar Formulario</button>
+        <button type="submit"> Enviar Formulario</button>
       </form>
     </Fragment>
   );

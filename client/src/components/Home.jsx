@@ -17,6 +17,7 @@ import {
   Order_Name,
 } from "../actions";
 
+
 /* importacion de componentes  */
 import Card from "./Card";
 import Paginate from "./Paginate";
