@@ -70,6 +70,10 @@ export default function Creator() {
             name="name"
             onChange={(e) => handlerSave(e)}
           />
+          {
+            !input.name? <output> ingrese un nombre</output>: 
+            <output> nombre aceptado</output>
+          }
         </div>
         <div>
           <label> Nivel de Vida</label>
@@ -81,6 +85,7 @@ export default function Creator() {
             name="vida"
             onChange={(e) => handlerSave(e)}
           />
+        <output>{input.vida} pts de vida</output>
         </div>
         <div>
           <label> Nivel de Fuerza</label>
@@ -93,6 +98,7 @@ export default function Creator() {
             name="fuerza"
             onChange={(e) => handlerSave(e)}
           />
+                <output>{input.fuerza} pts de fuerza</output>
         </div>
         <div>
           <label> Nivel de Ataque</label>
@@ -105,6 +111,7 @@ export default function Creator() {
             name="ataque"
             onChange={(e) => handlerSave(e)}
           />
+                <output>{input.ataque} pts de daño</output>
         </div>
         <div>
           <label> Nivel de Defenza</label>
@@ -116,6 +123,7 @@ export default function Creator() {
             name="defensa"
             onChange={(e) => handlerSave(e)}
           />
+                <output>{input.defensa } escudo</output>
         </div>
         <div>
           <label> Velocidad Maxima</label>
@@ -127,6 +135,7 @@ export default function Creator() {
             name="velocidad"
             onChange={(e) => handlerSave(e)}
           />
+                <output>{input.velocidad } km/h</output>
         </div>
         <div>
           <label> Altura</label>
@@ -138,7 +147,8 @@ export default function Creator() {
             name="altura"
             onChange={(e) => handlerSave(e)}
           />
-          {/* cm*/}
+                <output>{input.altura } cm</output>
+     
         </div>
         <div>
           <label> Peso</label>
@@ -150,6 +160,7 @@ export default function Creator() {
             name="peso"
             onChange={(e) => handlerSave(e)}
           />
+                <output>{input.peso } kg</output>
           {/* kg*/}
         </div>
         <div>
