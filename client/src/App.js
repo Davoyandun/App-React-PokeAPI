@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Creator from './components/Creator'
 import Details from './components/Details'
 
+
 function App() {
   return (
     <BrowserRouter>
