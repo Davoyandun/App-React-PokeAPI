@@ -56,10 +56,12 @@ export default function Creator() {
   }
   return (
     <Fragment>
+
       <Link to="/home">
         <button>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
+  
       <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
           <label> Agrega un Nombre</label>
