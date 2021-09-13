@@ -29,7 +29,7 @@ export default function Home() {
   const pokemons = useSelector((state) => state.pokemons);
   const allpokemons = useSelector((state) => state.allpokemons);
 
-
+  const[render, setRender]= useState('')
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const lastItem = currentPage * itemsPerPage;
@@ -51,15 +51,25 @@ export default function Home() {
 
   function handlerFilterTypes(e) {
     dispatch(Filter_Type(e.target.value));
+    setCurrentPage(1)
+    setRender(`tipos ${e.target.value}` )
   }
   function handlerFilterCreated(e) {
     dispatch(Filter_Created(e.target.value));
+    setCurrentPage(1)
+    setRender(`Creacion ${e.target.value}` )
   }
   function handlerOrderFuerza(e) {
+    e.preventDefault()
     dispatch(Order_Fuerza(e.target.value));
+    setCurrentPage(1)
+    setRender(`fuerza ${e.target.value}` )
+
   }
   function handlerOrderName(e) {
     dispatch(Order_Name(e.target.value));
+    setCurrentPage(1)
+    setRender(`nombre ${e.target.value}` )
   }
 
   return (
@@ -92,11 +102,12 @@ export default function Home() {
               <option value="desc">A-Z</option>
             </select>
             <select onChange={(e) => handlerOrderFuerza(e)}>
+            <option value="all">normal </option>
               <option value="top">Fuertes primero </option>
               <option value="bot"> Debil primero </option>
+            
             </select>
-              <button value="top" onClick={(e) => handlerOrderFuerza(e)}>debil</button>
-              <button value="bot"   onClick={(e) => handlerOrderFuerza(e)}> fuerte</button>
+              
             <select onChange={(e) => handlerFilterCreated(e)}>
               <option value="all">Todos</option>
               <option value="api">Canon</option>
