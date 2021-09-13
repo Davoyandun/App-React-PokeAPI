@@ -16,15 +16,19 @@ import {
   Order_Fuerza,
   Order_Name,
 } from "../actions";
+// import s from '../style/home.module.css'
 
 /* importacion de componentes  */
 import Card from "./Card";
 import Paginate from "./Paginate";
 import NavBar from "./NavBar";
 
+/* Inicio del componente */ 
 export default function Home() {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons);
+  const allpokemons = useSelector((state) => state.allpokemons);
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
@@ -59,16 +63,16 @@ export default function Home() {
   }
 
   return (
-    <div>
-      {pokemons.length < 1 ? (
-        <div>
+    <div >
+      {allpokemons.length < 1 ? (
+        <div /*className={s.loading}*/>
          
-         <h1>
+         <h1 /* className={s.text}*/>
            Cargando.... 
          </h1>
         </div>
       ) : (
-        <div>
+        <div /*className={s.contain} */ >
           <h1>Preparense para los Problemas</h1>
           <Link to="/creator">
             <button>Registrar Nuevo Pokémon en el Pokédex</button>
@@ -91,6 +95,8 @@ export default function Home() {
               <option value="top">Fuertes primero </option>
               <option value="bot"> Debil primero </option>
             </select>
+              <button value="top" onClick={(e) => handlerOrderFuerza(e)}>debil</button>
+              <button value="bot"   onClick={(e) => handlerOrderFuerza(e)}> fuerte</button>
             <select onChange={(e) => handlerFilterCreated(e)}>
               <option value="all">Todos</option>
               <option value="api">Canon</option>
@@ -120,7 +126,7 @@ export default function Home() {
               <option value="shadow">shadow</option>
             </select>
           </div>
-          <div>
+          <div /*className= {s.card}*/>
             {itemInPage &&
               itemInPage.map((e) => {
                 return (

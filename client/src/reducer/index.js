@@ -139,7 +139,7 @@ function rootReducer(state = initialState, actions) {
     case "GET_NAME":
       return {
         ...state,
-        pokemons: [actions.payload],
+        pokemons: actions.payload,
       };
       case "GET_TYPES":
       return {
