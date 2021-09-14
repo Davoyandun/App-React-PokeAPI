@@ -19,7 +19,6 @@ export default function NavBar() {
     setName('')
 }
 
-
   return (
     <form >
       <input type="text" placeholder="Busca un pokemon"  onChange={(e)=> handlerSetName(e)}/>

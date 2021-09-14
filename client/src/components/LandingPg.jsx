@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import landing from "../style/img/landing.mp4";
-// import s from "../style/landing.module.css";
+
+import s from "../css/landing.module.css";
 
 export default function Landing() {
   return (
-    <div>
-      {/* <video className={s.Landing} src={landing} autoPlay loop></video> */}
-      <Link to="home">
-        <h1 /*className={s.text}*/ > BIENVENIDO A PUEBLO PALETA</h1>
-      </Link>
+    <div className={s.landing}>
+      <div className={s.text}>
+         <h2 className={s.text}> BIENVENIDO A PUEBLO PALETA</h2>
+        <Link to="home">
+         <button className={s.button}>PIKA PIKA</button>
+        </Link>
+      </div>
     </div>
   );
 }

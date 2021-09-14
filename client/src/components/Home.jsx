@@ -16,20 +16,20 @@ import {
   Order_Fuerza,
   Order_Name,
 } from "../actions";
-// import s from '../style/home.module.css'
+import s from "../css/home.module.css";
 
 /* importacion de componentes  */
 import Card from "./Card";
 import Paginate from "./Paginate";
 import NavBar from "./NavBar";
 
-/* Inicio del componente */ 
+/* Inicio del componente */
 export default function Home() {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons);
   const allpokemons = useSelector((state) => state.allpokemons);
 
-  const[render, setRender]= useState('')
+  const [render, setRender] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const lastItem = currentPage * itemsPerPage;
@@ -51,94 +51,103 @@ export default function Home() {
 
   function handlerFilterTypes(e) {
     dispatch(Filter_Type(e.target.value));
-    setCurrentPage(1)
-    setRender(`tipos ${e.target.value}` )
+    setCurrentPage(1);
+    setRender(`tipos ${e.target.value}`);
   }
   function handlerFilterCreated(e) {
     dispatch(Filter_Created(e.target.value));
-    setCurrentPage(1)
-    setRender(`Creacion ${e.target.value}` )
+    setCurrentPage(1);
+    setRender(`Creacion ${e.target.value}`);
   }
   function handlerOrderFuerza(e) {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(Order_Fuerza(e.target.value));
-    setCurrentPage(1)
-    setRender(`fuerza ${e.target.value}` )
-
+    setCurrentPage(1);
+    setRender(`fuerza ${e.target.value}`);
   }
   function handlerOrderName(e) {
     dispatch(Order_Name(e.target.value));
-    setCurrentPage(1)
-    setRender(`nombre ${e.target.value}` )
+    setCurrentPage(1);
+    setRender(`nombre ${e.target.value}`);
   }
 
   return (
-    <div >
+    <div key="loading">
       {allpokemons.length < 1 ? (
-        <div /*className={s.loading}*/>
-         
-         <h1 /* className={s.text}*/>
-           Cargando.... 
-         </h1>
+        <div className={s.loading}>
+          <h1 className={s.text}>Cargando....</h1>
         </div>
       ) : (
-        <div /*className={s.contain} */ >
+        <div className={s.contain} key="home">
           <h1>Preparense para los Problemas</h1>
           <Link to="/creator">
             <button>Registrar Nuevo Pokémon en el Pokédex</button>
           </Link>
-          <br></br>
-          <button
-            onClick={(e) => {
-              handleRefresh(e);
-            }}
-          >
-            Pedir pokemons al Profesor Oak
-          </button>
-          <div>
-            <NavBar />
-            <select onChange={(e) => handlerOrderName(e)}>
-              <option value="asc">Z-A</option>
-              <option value="desc">A-Z</option>
-            </select>
-            <select onChange={(e) => handlerOrderFuerza(e)}>
-  
-              <option value="top">Fuertes primero </option>
-              <option value="bot"> Debil primero </option>
+          <div className= {s.nav}>
+            <button className={s.button1}
+              onClick={(e) => {
+                handleRefresh(e);
+              }}
+            >
+              Pedir pokemons al Profesor Oak
+            </button>
             
-            </select>
-              
-            <select onChange={(e) => handlerFilterCreated(e)}>
-              <option value="all">Todos</option>
-              <option value="api">Canon</option>
-              <option value="db">Creados</option>
-            </select>
-            <select onChange={(e) => handlerFilterTypes(e)}>
-              <option value="all">all</option>
-              <option value="normal">normal</option>
-              <option value="flying">flying</option>
-              <option value="fighting">fighting</option>
-              <option value="poison">poison</option>
-              <option value="ground">ground</option>
-              <option value="rock">rock</option>
-              <option value="bug">bug</option>
-              <option value="ghost">ghost</option>
-              <option value="steel">steel</option>
-              <option value="fire">fire</option>
-              <option value="water">water</option>
-              <option value="grass">grass</option>
-              <option value="electric">electric</option>
-              <option value="psychic">psychic</option>
-              <option value="ice">ice</option>
-              <option value="dragon">dragon</option>
-              <option value="dark">dark</option>
-              <option value="fairy">fairy</option>
-              <option value="unknown">unknown</option>
-              <option value="shadow">shadow</option>
-            </select>
+            <div>
+              <NavBar />
+              <div className={s.contentSelectors}>
+                <div className={s.select}>
+                  <select onChange={(e) => handlerOrderName(e)}>
+                    <option value="asc">Z-A</option>
+                    <option value="desc">A-Z</option>
+                  </select>
+                </div>
+                <div className={s.select}>
+                  <select onChange={(e) => handlerOrderFuerza(e)}>
+                    <option value="top">Fuertes primero </option>
+                    <option value="bot"> Debil primero </option>
+                  </select>
+                </div>
+
+                <div className={s.select}>
+                  <select onChange={(e) => handlerFilterCreated(e)}>
+                    <option value="all">Todos</option>
+                    <option value="api">Canon</option>
+                    <option value="db">Creados</option>
+                  </select>
+                </div>
+
+                <div className={s.select}>
+                  <select onChange={(e) => handlerFilterTypes(e)}>
+                    <option value="all">all</option>
+                    <option value="normal">normal</option>
+                    <option value="flying">flying</option>
+                    <option value="fighting">fighting</option>
+                    <option value="poison">poison</option>
+                    <option value="ground">ground</option>
+                    <option value="rock">rock</option>
+                    <option value="bug">bug</option>
+                    <option value="ghost">ghost</option>
+                    <option value="steel">steel</option>
+                    <option value="fire">fire</option>
+                    <option value="water">water</option>
+                    <option value="grass">grass</option>
+                    <option value="electric">electric</option>
+                    <option value="psychic">psychic</option>
+                    <option value="ice">ice</option>
+                    <option value="dragon">dragon</option>
+                    <option value="dark">dark</option>
+                    <option value="fairy">fairy</option>
+                    <option value="unknown">unknown</option>
+                    <option value="shadow">shadow</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
-          <div /*className= {s.card}*/>
-            {itemInPage.length < 1 ? <div>Pokémons no encontrados</div> :
+          <div className={s.card} key="card">
+            {itemInPage.length < 1 ? (
+              <div>Pokémons no encontrados</div>
+            ) : (
               itemInPage.map((e) => {
                 return (
                   <Fragment>
@@ -148,11 +157,13 @@ export default function Home() {
                         img={e.img}
                         type={e.type}
                         fuerza={e.fuerza}
+                        id={e.id}
                       />
                     </Link>
                   </Fragment>
                 );
-              })}
+              })
+            )}
           </div>
           <div>
             <Paginate
