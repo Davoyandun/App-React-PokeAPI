@@ -39,20 +39,25 @@ export default function Creator() {
   }
   function handlerSubmit(e) {
     e.preventDefault();
-    dispatch(Post_Pokemon(input));
-    setInput({
-      img: "No found",
-      name: "",
-      type: [],
-      id: Math.random(),
-      vida: "",
-      fuerza: "",
-      ataque: "",
-      defensa: "",
-      velocidad: "",
-      altura: "",
-      peso: "",
-    });
+    if(input.name && input.type && input.vida && input.fuerza && input.ataque && input.defensa && input.velocidad && input.peso && input.altura){
+
+      dispatch(Post_Pokemon(input));
+      setInput({
+        img: "No found",
+        name: "",
+        type: [],
+        vida: "",
+        fuerza: "",
+        ataque: "",
+        defensa: "",
+        velocidad: "",
+        altura: "",
+        peso: "",
+      });
+      alert('Pokémon creado con Exito')
+    }else{
+      alert('No ingresaste toda la informacion.')
+    }
   }
   return (
     <Fragment>
@@ -162,7 +167,7 @@ export default function Creator() {
             onChange={(e) => handlerSave(e)}
           />
           <output>{input.peso} kg</output>
-          {/* kg*/}
+        
         </div>
         <div>
           <h3>Seleccione el tipo</h3>

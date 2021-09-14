@@ -12,10 +12,10 @@ export default function Details(props) {
     },
     [dispatch]
   );
-  // const [detail, setDetail]= useState([])
+
 
   let e = useSelector((e) => e.id);
-  console.log("esto es detail ", e);
+ 
 
   return (
     <div>
@@ -23,6 +23,7 @@ export default function Details(props) {
         <div>Aun no esta disponible</div>
       ) : (
         <div>
+
           <h1>{e[0].name}</h1>
           <img src={e[0].img} alt="Img no found" />
           <div>
@@ -42,7 +43,11 @@ export default function Details(props) {
           <p>{e[0].velocidad}</p>
           <p>{e[0].altura}</p>
           <p>{e[0].peso}</p>
+          <Link to= '/home'>
+          <button>Home</button>
+        </Link>
         </div>
+       
       )}
     </div>
   );

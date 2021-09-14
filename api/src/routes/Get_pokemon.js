@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 const getPokes = async () => {
   const pokemons = [];
   for (let i = 1; i <= 40; i++) {
-    const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    const pokemon = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ i);
     pokemons.push({
       name: pokemon.data.name,
       img: pokemon.data.sprites.other.dream_world.front_default,
@@ -55,12 +55,13 @@ const allPokes = async () => {
   try {
     let Api = await getPokes();
     let DB = await pokeDB();
-    let all = Api.concat(DB);
+    let all = DB.concat(Api);
     return all;
   } catch (e) {
     console.log(e);
   }
 };
+
 
 // aqui iniciia el ruteo del backend */
 /*

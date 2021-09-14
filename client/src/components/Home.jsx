@@ -102,7 +102,7 @@ export default function Home() {
               <option value="desc">A-Z</option>
             </select>
             <select onChange={(e) => handlerOrderFuerza(e)}>
-            <option value="all">normal </option>
+  
               <option value="top">Fuertes primero </option>
               <option value="bot"> Debil primero </option>
             
@@ -138,7 +138,7 @@ export default function Home() {
             </select>
           </div>
           <div /*className= {s.card}*/>
-            {itemInPage &&
+            {itemInPage.length < 1 ? <div>Pokémons no encontrados</div> :
               itemInPage.map((e) => {
                 return (
                   <Fragment>
