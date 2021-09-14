@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import { Get_Types, Post_Pokemon } from "../actions";
 
 export default function Creator() {
@@ -39,8 +39,17 @@ export default function Creator() {
   }
   function handlerSubmit(e) {
     e.preventDefault();
-    if(input.name && input.type && input.vida && input.fuerza && input.ataque && input.defensa && input.velocidad && input.peso && input.altura){
-
+    if (
+      input.name &&
+      input.type.length &&
+      input.vida &&
+      input.fuerza &&
+      input.ataque &&
+      input.defensa &&
+      input.velocidad &&
+      input.peso &&
+      input.altura
+    ) {
       dispatch(Post_Pokemon(input));
       setInput({
         img: "No found",
@@ -54,25 +63,24 @@ export default function Creator() {
         altura: "",
         peso: "",
       });
-      alert('Pokémon creado con Exito')
-    }else{
-      alert('No ingresaste toda la informacion.')
+      alert("Pokémon creado con Exito");
+    } else {
+      alert("No ingresaste toda la informacion.");
     }
   }
   return (
     <Fragment>
-
       <Link to="/home">
         <button>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
-  
+
       <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
           <label> Agrega un Nombre</label>
           <input
             type="text"
-            value={input.name}
+            value={input.name.toLowerCase()}
             name="name"
             onChange={(e) => handlerSave(e)}
           />
@@ -167,7 +175,6 @@ export default function Creator() {
             onChange={(e) => handlerSave(e)}
           />
           <output>{input.peso} kg</output>
-        
         </div>
         <div>
           <h3>Seleccione el tipo</h3>

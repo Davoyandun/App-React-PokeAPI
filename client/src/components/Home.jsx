@@ -29,7 +29,7 @@ export default function Home() {
   const pokemons = useSelector((state) => state.pokemons);
   const allpokemons = useSelector((state) => state.allpokemons);
 
-  const [render, setRender] = useState("");
+  const [, setRender] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
   const lastItem = currentPage * itemsPerPage;
@@ -107,7 +107,6 @@ export default function Home() {
                     <option value="bot"> Debil primero </option>
                   </select>
                 </div>
-
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterCreated(e)}>
                     <option value="all">Todos</option>
@@ -115,7 +114,6 @@ export default function Home() {
                     <option value="db">Creados</option>
                   </select>
                 </div>
-
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterTypes(e)}>
                     <option value="all">all</option>
@@ -148,10 +146,10 @@ export default function Home() {
             {itemInPage.length < 1 ? (
               <div>Pokémons no encontrados</div>
             ) : (
-              itemInPage.map((e) => {
+              itemInPage.map((e,i) => {
                 return (
-                  <Fragment>
-                    <Link to={"/home/" + e.id}>
+                  <Fragment key= {i}>
+                    
                       <Card
                         name={e.name}
                         img={e.img}
@@ -159,7 +157,7 @@ export default function Home() {
                         fuerza={e.fuerza}
                         id={e.id}
                       />
-                    </Link>
+                  
                   </Fragment>
                 );
               })

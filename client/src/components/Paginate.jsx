@@ -9,7 +9,7 @@ export default function Paginate({ itemsPerPage, pokemons, paginado }) {
     <nav>
       <ul>
         {number &&
-          number.map((e) => <button onClick={() => paginado(e)}>{e}</button>)}
+          number.map((e, i) => <button onClick={() => paginado(e)} key = {i}>{e}</button>) }
       </ul>
     </nav>
   );

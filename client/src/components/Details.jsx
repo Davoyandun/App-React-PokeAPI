@@ -5,17 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { Get_Id } from "../actions";
 
 export default function Details(props) {
+
   let dispatch = useDispatch();
   useEffect(
     (e) => {
       dispatch(Get_Id(props.match.params.id));
     },
-    [dispatch]
+    [dispatch, props.match.params.id ]
   );
 
 
   let e = useSelector((e) => e.id);
- 
 
   return (
     <div>
@@ -29,14 +29,13 @@ export default function Details(props) {
           <div>
             Pokemon de tipo:{" "}
             {e[0].type ? (
-              e[0].type.map((e) => {
-                return <p> {e}</p>;
+              e[0].type.map((e,i) => {
+                return <p key= {i}> {e}</p>;
               })
             ) : (
               <p>tipo no encontrado</p>
             )}
           </div>
-
           <p>{e[0].vida}</p>
           <p>{e[0].fuerza}</p>
           <p>{e[0].defensa}</p>
