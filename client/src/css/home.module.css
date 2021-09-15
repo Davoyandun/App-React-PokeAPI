@@ -11,15 +11,16 @@
 .contain {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
-.nav{
+.nav {
   display: flex;
-  flex-direction:column;
-  
-  }
-.button1{
-  display:flexbox;
-  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.button1 {
+  display: flexbox;
+  width: 20%;
   cursor: pointer;
   padding: 7px 1px;
   height: 42px;
@@ -36,10 +37,9 @@
   position: relative;
   transition: all 0.25s ease;
 }
-.button1:hover{
+.button1:hover {
   background: #b1e8cd;
 }
-
 
 /*Selectores*/
 .contentSelectors {

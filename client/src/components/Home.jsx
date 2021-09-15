@@ -70,7 +70,9 @@ export default function Home() {
     setCurrentPage(1);
     setRender(`nombre ${e.target.value}`);
   }
-
+  /* inicio del renderizado
+  ♙♙♙♙♙♙♙♙
+  ♖♘♗♔♕♗♘♖*/
   return (
     <div key="loading">
       {allpokemons.length < 1 ? (
@@ -83,62 +85,60 @@ export default function Home() {
           <Link to="/creator">
             <button>Registrar Nuevo Pokémon en el Pokédex</button>
           </Link>
-          <div className= {s.nav}>
-            <button className={s.button1}
+          <div className={s.nav}>
+            <button
+              className={s.button1}
               onClick={(e) => {
                 handleRefresh(e);
               }}
             >
               Pedir pokemons al Profesor Oak
             </button>
-            
-            <div>
-              <NavBar />
-              <div className={s.contentSelectors}>
-                <div className={s.select}>
-                  <select onChange={(e) => handlerOrderName(e)}>
-                    <option value="asc">Z-A</option>
-                    <option value="desc">A-Z</option>
-                  </select>
-                </div>
-                <div className={s.select}>
-                  <select onChange={(e) => handlerOrderFuerza(e)}>
-                    <option value="top">Fuertes primero </option>
-                    <option value="bot"> Debil primero </option>
-                  </select>
-                </div>
-                <div className={s.select}>
-                  <select onChange={(e) => handlerFilterCreated(e)}>
-                    <option value="all">Todos</option>
-                    <option value="api">Canon</option>
-                    <option value="db">Creados</option>
-                  </select>
-                </div>
-                <div className={s.select}>
-                  <select onChange={(e) => handlerFilterTypes(e)}>
-                    <option value="all">all</option>
-                    <option value="normal">normal</option>
-                    <option value="flying">flying</option>
-                    <option value="fighting">fighting</option>
-                    <option value="poison">poison</option>
-                    <option value="ground">ground</option>
-                    <option value="rock">rock</option>
-                    <option value="bug">bug</option>
-                    <option value="ghost">ghost</option>
-                    <option value="steel">steel</option>
-                    <option value="fire">fire</option>
-                    <option value="water">water</option>
-                    <option value="grass">grass</option>
-                    <option value="electric">electric</option>
-                    <option value="psychic">psychic</option>
-                    <option value="ice">ice</option>
-                    <option value="dragon">dragon</option>
-                    <option value="dark">dark</option>
-                    <option value="fairy">fairy</option>
-                    <option value="unknown">unknown</option>
-                    <option value="shadow">shadow</option>
-                  </select>
-                </div>
+            <NavBar />
+            <div className={s.contentSelectors}>
+              <div className={s.select}>
+                <select onChange={(e) => handlerOrderName(e)}>
+                  <option value="asc">Z-A</option>
+                  <option value="desc">A-Z</option>
+                </select>
+              </div>
+              <div className={s.select}>
+                <select onChange={(e) => handlerOrderFuerza(e)}>
+                  <option value="top">Fuertes primero </option>
+                  <option value="bot"> Debil primero </option>
+                </select>
+              </div>
+              <div className={s.select}>
+                <select onChange={(e) => handlerFilterCreated(e)}>
+                  <option value="all">Todos</option>
+                  <option value="api">Canon</option>
+                  <option value="db">Creados</option>
+                </select>
+              </div>
+              <div className={s.select}>
+                <select onChange={(e) => handlerFilterTypes(e)}>
+                  <option value="all">all</option>
+                  <option value="normal">normal</option>
+                  <option value="flying">flying</option>
+                  <option value="fighting">fighting</option>
+                  <option value="poison">poison</option>
+                  <option value="ground">ground</option>
+                  <option value="rock">rock</option>
+                  <option value="bug">bug</option>
+                  <option value="ghost">ghost</option>
+                  <option value="steel">steel</option>
+                  <option value="fire">fire</option>
+                  <option value="water">water</option>
+                  <option value="grass">grass</option>
+                  <option value="electric">electric</option>
+                  <option value="psychic">psychic</option>
+                  <option value="ice">ice</option>
+                  <option value="dragon">dragon</option>
+                  <option value="dark">dark</option>
+                  <option value="fairy">fairy</option>
+                  <option value="unknown">unknown</option>
+                  <option value="shadow">shadow</option>
+                </select>
               </div>
             </div>
           </div>
@@ -146,18 +146,16 @@ export default function Home() {
             {itemInPage.length < 1 ? (
               <div>Pokémons no encontrados</div>
             ) : (
-              itemInPage.map((e,i) => {
+              itemInPage.map((e, i) => {
                 return (
-                  <Fragment key= {i}>
-                    
-                      <Card
-                        name={e.name}
-                        img={e.img}
-                        type={e.type}
-                        fuerza={e.fuerza}
-                        id={e.id}
-                      />
-                  
+                  <Fragment key={i}>
+                    <Card
+                      name={e.name}
+                      img={e.img}
+                      type={e.type}
+                      fuerza={e.fuerza}
+                      id={e.id}
+                    />
                   </Fragment>
                 );
               })

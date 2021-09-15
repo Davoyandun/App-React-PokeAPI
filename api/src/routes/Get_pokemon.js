@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 const getPokes = async () => {
   const pokemons = [];
   for (let i = 1; i <= 40; i++) {
-    const pokemon = await axios.get('https://pokeapi.co/api/v2/pokemon/'+ i);
+    const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/" + i);
     pokemons.push({
       name: pokemon.data.name,
       img: pokemon.data.sprites.other.dream_world.front_default,
@@ -32,7 +32,7 @@ let pokeDB = async () => {
     let created = [];
     for (let i = 0; i < BD.length; i++) {
       created.push({
-        name: BD[i].name,
+        name: BD[i].name.toLowerCase(),
         img: "https://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg",
         type: BD[i].types.map((e) => e.type),
         id: BD[i].id,
@@ -47,7 +47,7 @@ let pokeDB = async () => {
     }
     return created;
   } catch (e) {
-    console.log( e);
+    console.log(e);
   }
 };
 
@@ -62,7 +62,6 @@ const allPokes = async () => {
   }
 };
 
-
 // aqui iniciia el ruteo del backend */
 /*
   ♙♙♙♙♙♙♙♙
@@ -72,23 +71,35 @@ router.get("/pokemons", async (req, res) => {
   let name = req.query.name;
   try {
     if (name) {
+      
       name = name.toLowerCase();
 
-      //  si name existe en la DB lo recibo y lo envio con un status 200  y send()
-      // caso contrario hago todo lo q esta aca abajo
+      let allDB = await pokeDB();
+      let arrName = allDB.filter((e) => {
+        if (name == e.name.toLowerCase()) {
+          return e;
+        }
+      });
 
-      let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-      let detail = {
-        name: info.data.name,
-        img: info.data.sprites.other.dream_world.front_default,
-        type: info.data.types.map((e) => e.type.name),
-        id: info.data.id,
-      };
-     
-      if (!detail) {
-        res.status(200).send("no encontrado");
+      if (arrName.length > 0) {
+        res.status(200).send(arrName);
       } else {
-        res.status(200).send([detail]);
+        //  si name existe en la DB lo recibo y lo envio con un status 200  y send()
+        // caso contrario hago todo lo q esta aca abajo
+
+        let info = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        let detail = {
+          name: info.data.name,
+          img: info.data.sprites.other.dream_world.front_default,
+          type: info.data.types.map((e) => e.type.name),
+          id: info.data.id,
+        };
+
+        if (!detail) {
+          res.status(200).send("no encontrado");
+        } else {
+          res.status(200).send([detail]);
+        }
       }
     } else {
       let allinfo = await allPokes();
@@ -178,7 +189,7 @@ router.post("/pokemons", async (req, res) => {
   });
   await newPokemon.addType(typeDB);
   const response = await Pokemon.findAll({
-    include: Type
+    include: Type,
   });
   res.status(200).send(response);
 });

@@ -80,7 +80,7 @@ export default function Creator() {
           <label> Agrega un Nombre</label>
           <input
             type="text"
-            value={input.name.toLowerCase()}
+            value={input.name}
             name="name"
             onChange={(e) => handlerSave(e)}
           />
