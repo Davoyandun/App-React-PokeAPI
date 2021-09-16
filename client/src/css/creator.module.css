@@ -1,0 +1,17 @@
+.registro{
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.box{
+    display: flex;
+    flex-direction: row;
+}
+.creando{
+    background-image: url('../css/img/creacion.gif');
+    height: 50rem;
+    width: 75rem;
+    top: -100rem;
+}

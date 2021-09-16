@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link,} from "react-router-dom";
 import { Get_Types, Post_Pokemon } from "../actions";
+import s from '../css/creator.module.css'
 
 export default function Creator() {
   let dispatch = useDispatch();
@@ -54,7 +55,7 @@ export default function Creator() {
       setInput({
         img: "No found",
         name: "",
-        type: [],
+        type: [''],
         vida: "",
         fuerza: "",
         ataque: "",
@@ -74,7 +75,9 @@ export default function Creator() {
         <button>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
-
+      <div className={s.registro}>
+       
+      <div className={s.box}>
       <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
           <label> Agrega un Nombre</label>
@@ -186,6 +189,10 @@ export default function Creator() {
         </div>
         <button type="submit"> Enviar Formulario</button>
       </form>
+      </div>
+      <div className={s.creando}>
+      </div>
+      </div>
     </Fragment>
   );
 }
