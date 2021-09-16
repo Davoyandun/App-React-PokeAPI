@@ -75,7 +75,10 @@ export default function Home() {
           <h1 className={s.text}>Cargando....</h1>
         </div>
       ) : (
-        <div className={s.contain} key="home">
+
+        
+        <div className={s.contain, s.fondo} key="home">
+          
           <div className={s.barra}>
             <h1 className={s.titulo}>PokeApp</h1>
             <div className={s.nav}>

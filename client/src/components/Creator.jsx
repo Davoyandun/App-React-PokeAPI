@@ -70,7 +70,7 @@ export default function Creator() {
     }
   }
   return (
-    <Fragment>
+    <div className={s.img}>
       <Link to="/home">
         <button>Home</button>
       </Link>
@@ -193,6 +193,6 @@ export default function Creator() {
       <div className={s.creando}>
       </div>
       </div>
-    </Fragment>
+    </div>
   );
 }

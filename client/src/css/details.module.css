@@ -1,0 +1,40 @@
+.box {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.img{
+  background-image: url('../css/img/picachu.jpg');
+  background-size:cover;
+}
+.stats {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.stats p {
+  font-size: 24px;
+  color: rgb(6, 44, 40);
+}
+.tipo {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.titulo {
+  font-size: 56px;
+  color: yellow;
+  text-decoration: none;
+}
+.linck {
+  text-decoration: none;
+}

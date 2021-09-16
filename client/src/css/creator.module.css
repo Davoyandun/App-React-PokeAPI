@@ -10,8 +10,12 @@
     flex-direction: row;
 }
 .creando{
+
     background-image: url('../css/img/creacion.gif');
     height: 50rem;
     width: 75rem;
-    top: -100rem;
+
+
+
+ 
 }
