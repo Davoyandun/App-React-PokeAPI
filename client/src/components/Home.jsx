@@ -44,11 +44,6 @@ export default function Home() {
     dispatch(Get_Elements());
   }, [dispatch]);
 
-  function handleRefresh(e) {
-    e.preventDefault();
-    dispatch(Get_Elements());
-  }
-
   function handlerFilterTypes(e) {
     dispatch(Filter_Type(e.target.value));
     setCurrentPage(1);
@@ -81,70 +76,69 @@ export default function Home() {
         </div>
       ) : (
         <div className={s.contain} key="home">
-          <h1>Preparense para los Problemas</h1>
-          <Link to="/creator">
-            <button>Registrar Nuevo Pokémon en el Pokédex</button>
-          </Link>
-          <div className={s.nav}>
-            <button
-              className={s.button1}
-              onClick={(e) => {
-                handleRefresh(e);
-              }}
-            >
-              Pedir pokemons al Profesor Oak
-            </button>
-            <NavBar />
-            <div className={s.contentSelectors}>
-              <div className={s.select}>
-                <select onChange={(e) => handlerOrderName(e)}>
-                  <option value="asc">Z-A</option>
-                  <option value="desc">A-Z</option>
-                </select>
-              </div>
-              <div className={s.select}>
-                <select onChange={(e) => handlerOrderFuerza(e)}>
-                  <option value="top">Fuertes primero </option>
-                  <option value="bot"> Debil primero </option>
-                </select>
-              </div>
-              <div className={s.select}>
-                <select onChange={(e) => handlerFilterCreated(e)}>
-                  <option value="all">Todos</option>
-                  <option value="api">Canon</option>
-                  <option value="db">Creados</option>
-                </select>
-              </div>
-              <div className={s.select}>
-                <select onChange={(e) => handlerFilterTypes(e)}>
-                  <option value="all">all</option>
-                  <option value="normal">normal</option>
-                  <option value="flying">flying</option>
-                  <option value="fighting">fighting</option>
-                  <option value="poison">poison</option>
-                  <option value="ground">ground</option>
-                  <option value="rock">rock</option>
-                  <option value="bug">bug</option>
-                  <option value="ghost">ghost</option>
-                  <option value="steel">steel</option>
-                  <option value="fire">fire</option>
-                  <option value="water">water</option>
-                  <option value="grass">grass</option>
-                  <option value="electric">electric</option>
-                  <option value="psychic">psychic</option>
-                  <option value="ice">ice</option>
-                  <option value="dragon">dragon</option>
-                  <option value="dark">dark</option>
-                  <option value="fairy">fairy</option>
-                  <option value="unknown">unknown</option>
-                  <option value="shadow">shadow</option>
-                </select>
+          <div className={s.barra}>
+            <h1 className={s.titulo}>PokeApp</h1>
+            <div className={s.nav}>
+              <Link to="/creator">
+                <button className={s.button1}>
+                  Registrar Nuevo Pokémon en el Pokédex
+                </button>
+              </Link>
+
+              <NavBar />
+              <div className={s.contentSelectors}>
+
+
+                <div className={s.select}>
+                  <select onChange={(e) => handlerOrderName(e)}>
+                    <option value="asc">Z-A</option>
+                    <option value="desc">A-Z</option>
+                  </select>
+                </div>
+                <div className={s.select}>
+                  <select onChange={(e) => handlerOrderFuerza(e)}>
+                    <option value="top">Fuertes primero </option>
+                    <option value="bot"> Debil primero </option>
+                  </select>
+                </div>
+                <div className={s.select}>
+                  <select onChange={(e) => handlerFilterCreated(e)}>
+                    <option value="all">Todos</option>
+                    <option value="api">Canon</option>
+                    <option value="db">Creados</option>
+                  </select>
+                </div>
+                <div className={s.select}>
+                  <select onChange={(e) => handlerFilterTypes(e)}>
+                    <option value="all">all</option>
+                    <option value="normal">normal</option>
+                    <option value="flying">flying</option>
+                    <option value="fighting">fighting</option>
+                    <option value="poison">poison</option>
+                    <option value="ground">ground</option>
+                    <option value="rock">rock</option>
+                    <option value="bug">bug</option>
+                    <option value="ghost">ghost</option>
+                    <option value="steel">steel</option>
+                    <option value="fire">fire</option>
+                    <option value="water">water</option>
+                    <option value="grass">grass</option>
+                    <option value="electric">electric</option>
+                    <option value="psychic">psychic</option>
+                    <option value="ice">ice</option>
+                    <option value="dragon">dragon</option>
+                    <option value="dark">dark</option>
+                    <option value="fairy">fairy</option>
+                    <option value="unknown">unknown</option>
+                    <option value="shadow">shadow</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
           <div className={s.card} key="card">
             {itemInPage.length < 1 ? (
-              <div>Pokémons no encontrados</div>
+              <div className={s.nofound}>Pokémons no encontrados</div>
             ) : (
               itemInPage.map((e, i) => {
                 return (

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Get_name } from "../actions";
 import { useDispatch } from "react-redux";
+import s from '../css/search.module.css'
 
 export default function NavBar() {
   const [name, setName] = useState("");
@@ -20,9 +21,9 @@ export default function NavBar() {
 }
 
   return (
-    <form >
-      <input type="text" placeholder="Busca un pokemon"  onChange={(e)=> handlerSetName(e)}/>
-      <button type="submit" onClick={(e) => handlerGetName(e)}>
+    <form className={s.form}>
+      <input type="text" placeholder="Busca un pokemon..."  onChange={(e)=> handlerSetName(e)} className={s.input}/>
+      <button type="submit" onClick={(e) => handlerGetName(e)} className={s.button}>
         Buscar
       </button>
     </form>

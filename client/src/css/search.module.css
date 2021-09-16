@@ -1,0 +1,44 @@
+.form{
+
+    width: 25%;
+}
+
+.input{
+    display: flexbox;
+    padding: 3px;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #817878;
+    font-size: 1em;
+    color: #999;
+    font-family: "Quicksand", sans-serif;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+.button{
+    display: flexbox;
+    width: 25%;
+    cursor: pointer;
+    padding: 7px 5px;
+    height: 42px;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #faf38d;
+    color: #7b7b7b;
+    font-size: 1em;
+    color: #999;
+    font-family: "Quicksand", sans-serif;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+.button:hover{
+    background: #b1e8cd;
+}
