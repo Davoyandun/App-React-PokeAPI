@@ -4,6 +4,8 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+
+    background-color: rgb(217, 224, 240);
 }
 .box{
     display: flex;
@@ -15,7 +17,28 @@
     height: 50rem;
     width: 75rem;
 
+}
 
-
- 
+.boton{
+    display: flexbox;
+    width: 50%;
+    cursor: pointer;
+    padding: 7px 1px;
+    height: 42px;
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #7b7b7b;
+    font-size: 1em;
+    color: #999;
+    font-family: "Quicksand", sans-serif;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+    margin-top: 10px;
+}
+.boton:hover{
+    background-color: rgb(187, 248, 159);
 }

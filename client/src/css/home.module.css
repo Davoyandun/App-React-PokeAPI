@@ -10,6 +10,7 @@
 /* Home */
 .contain {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-around;
 
@@ -26,6 +27,7 @@
   color: rgb(255, 251, 0);
 }
 .barra{
+  flex-wrap: wrap;
   background: rgba( 255, 241, 0, 0.15 );
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 2.5px );
@@ -34,7 +36,9 @@ border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 .nav {
+
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
 }
@@ -64,6 +68,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 /*Selectores*/
 .contentSelectors {
   display: flex;
+  align-items: center;
   justify-content: space-around;
   flex-direction: row;
 }

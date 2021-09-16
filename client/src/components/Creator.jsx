@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link,} from "react-router-dom";
 import { Get_Types, Post_Pokemon } from "../actions";
@@ -72,11 +72,10 @@ export default function Creator() {
   return (
     <div className={s.img}>
       <Link to="/home">
-        <button>Home</button>
+        <button className={s.boton}>Home</button>
       </Link>
       <h1>Registra tu Nuevo Pokémon</h1>
       <div className={s.registro}>
-       
       <div className={s.box}>
       <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
@@ -189,9 +188,10 @@ export default function Creator() {
         </div>
         <button type="submit"> Enviar Formulario</button>
       </form>
-      </div>
       <div className={s.creando}>
       </div>
+      </div>
+
       </div>
     </div>
   );
