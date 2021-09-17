@@ -5,6 +5,8 @@ const router = Router();
 const { v4: uuidv4 } = require("uuid");
 
 const getPokes = async () => {
+
+
   const pokemons = [];
   for (let i = 1; i <= 40; i++) {
     const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/" + i);
@@ -23,6 +25,7 @@ const getPokes = async () => {
   }
   return pokemons;
 };
+
 
 let pokeDB = async () => {
   try {
