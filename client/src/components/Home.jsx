@@ -81,7 +81,7 @@ export default function Home() {
           
           <div className={s.barra}>
             <h1 className={s.titulo}>PokeApp</h1>
-            
+
             <div className={s.nav}>
               <Link to="/creator">
                 <button className={s.button1}>
@@ -94,21 +94,20 @@ export default function Home() {
               <div className={s.contentSelectors}>
                 <div className={s.select}>
                   <select onChange={(e) => handlerOrderName(e)}>
-                  <option >ABC</option>
                     <option value="asc">Z-A</option>
                     <option value="desc">A-Z</option>
                   </select>
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerOrderFuerza(e)}>
-                  <option >FUERZA</option>
+        
                     <option value="top">Fuertes</option>
                     <option value="bot"> Debil</option>
                   </select>
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterCreated(e)}>
-                  <option >ORIGEN</option>
+             
                     <option value="all">Todos</option>
                     <option value="api">Canon</option>
                     <option value="db">Creados</option>
@@ -116,8 +115,8 @@ export default function Home() {
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterTypes(e)}>
-                  <option >TIPO</option>
-                    <option value="all">all</option>
+            
+                    <option value="all">Todos</option>
                     <option value="normal">normal</option>
                     <option value="flying">flying</option>
                     <option value="fighting">fighting</option>

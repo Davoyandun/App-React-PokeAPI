@@ -115,7 +115,15 @@ router.get("/pokemons", async (req, res) => {
       res.status(200).send(infoIndex);
     }
   } catch (e) {
-    console.log(e);
+    let error ={
+      name: "no foun",
+      img: "no foun",
+      id: 1000,
+      fuerza: "no foun",
+      type: ["no foun"],
+    }
+    res.status(400).send([error]);
+   
   }
 });
 

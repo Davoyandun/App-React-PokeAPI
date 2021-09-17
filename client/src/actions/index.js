@@ -37,13 +37,30 @@ export function Order_Name(payload) {
 
 export function Get_name(value) {
   return async function (dispatch) {
-    let filterName = await axios.get(
+    try{
+       let filterName = await axios.get(
       "http://localhost:3001/pokemons?name=" + value
     );
+   
     return dispatch({
       type: "GET_NAME",
       payload: filterName.data,
     });
+    } catch(e){
+      let error ={
+        name: "no foun",
+        img: "no foun",
+        id: 1000,
+        fuerza: "no foun",
+        type: ["no foun"],
+      }
+      return dispatch({
+        type: "GET_NAME",
+        payload: [error] ,
+      });
+
+    }
+   
   };
 }
 export function Get_Types(value) {

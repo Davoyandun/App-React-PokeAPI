@@ -137,6 +137,7 @@ function rootReducer(state = initialState, actions) {
       break;
 
     case "GET_NAME":
+      
       return {
         ...state,
         pokemons: actions.payload,
