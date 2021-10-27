@@ -75,18 +75,13 @@ export default function Home() {
           <h1 className={s.text}>Cargando....</h1>
         </div>
       ) : (
-
-        
-        <div className={s.contain ,s.fondo} key="home">
-          
+        <div className={(s.contain, s.fondo)} key="home">
           <div className={s.barra}>
             <h1 className={s.titulo}>PokeApp</h1>
 
             <div className={s.nav}>
               <Link to="/creator">
-                <button className={s.button1}>
-                  Registrar en el Pokédex
-                </button>
+                <button className={s.button1}>Registrar en el Pokédex</button>
               </Link>
 
               <NavBar />
@@ -94,20 +89,30 @@ export default function Home() {
               <div className={s.contentSelectors}>
                 <div className={s.select}>
                   <select onChange={(e) => handlerOrderName(e)}>
+                    <option disabled="disabled" selected="true">
+                      {" "}
+                      Abc
+                    </option>
                     <option value="asc">Z-A</option>
                     <option value="desc">A-Z</option>
                   </select>
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerOrderFuerza(e)}>
-        
+                    <option disabled="disabled" selected="true">
+                      {" "}
+                      Fuerza
+                    </option>
                     <option value="top">Fuertes</option>
                     <option value="bot"> Debil</option>
                   </select>
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterCreated(e)}>
-             
+                    <option disabled="disabled" selected="true">
+                      {" "}
+                      Origen
+                    </option>
                     <option value="all">Todos</option>
                     <option value="api">Canon</option>
                     <option value="db">Creados</option>
@@ -115,7 +120,9 @@ export default function Home() {
                 </div>
                 <div className={s.select}>
                   <select onChange={(e) => handlerFilterTypes(e)}>
-            
+                    <option disabled="disabled" selected="true">
+                      Tipos
+                    </option>
                     <option value="all">Todos</option>
                     <option value="normal">normal</option>
                     <option value="flying">flying</option>

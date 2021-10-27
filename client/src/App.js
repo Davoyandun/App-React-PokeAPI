@@ -4,6 +4,9 @@ import LandingPg from './components/LandingPg'
 import Home from "./components/Home";
 import Creator from './components/Creator'
 import Details from './components/Details'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 
 function App() {

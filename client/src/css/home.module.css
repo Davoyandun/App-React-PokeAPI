@@ -42,6 +42,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   flex-direction: row;
   justify-content: space-around;
 }
+
 .button1 {
   display: flexbox;
   width: 100%;

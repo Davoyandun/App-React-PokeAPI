@@ -74,13 +74,15 @@ export default function Creator() {
       <Link to="/home">
         <button className={s.boton}>Home</button>
       </Link>
+
       <h1>Registra tu Nuevo Pokémon</h1>
       <div className={s.registro}>
       <div className={s.box}>
       <form onSubmit={(e) => handlerSubmit(e)}>
         <div>
-          <label> Agrega un Nombre</label>
+          <label class="form-label"> Agrega un Nombre</label>
           <input
+          class="form-control"
             type="text"
             value={input.name}
             name="name"
@@ -93,8 +95,9 @@ export default function Creator() {
           )}
         </div>
         <div>
-          <label> Nivel de Vida</label>
+          <label class="form-label"> Nivel de Vida</label>
           <input
+          class="form-range"
             type="range"
             min="0"
             max="100"
@@ -105,8 +108,9 @@ export default function Creator() {
           <output>{input.vida} pts de vida</output>
         </div>
         <div>
-          <label> Nivel de Fuerza</label>
+          <label class="form-label"> Nivel de Fuerza</label>
           <input
+          class="form-range"
             type="range"
             min="20"
             max="100"
@@ -118,8 +122,9 @@ export default function Creator() {
           <output>{input.fuerza} pts de fuerza</output>
         </div>
         <div>
-          <label> Nivel de Ataque</label>
+          <label class="form-label"> Nivel de Ataque</label>
           <input
+          class="form-range"
             type="range"
             min="20"
             max="100"
@@ -131,8 +136,9 @@ export default function Creator() {
           <output>{input.ataque} pts de daño</output>
         </div>
         <div>
-          <label> Nivel de Defenza</label>
+          <label class="form-label"> Nivel de Defenza</label>
           <input
+          class="form-range"
             type="range"
             min="20"
             max="100"
@@ -143,8 +149,9 @@ export default function Creator() {
           <output>{input.defensa} escudo</output>
         </div>
         <div>
-          <label> Velocidad Maxima</label>
+          <label class="form-label"> Velocidad Maxima</label>
           <input
+          class="form-range"
             type="range"
             min="5"
             max="180"
@@ -155,8 +162,9 @@ export default function Creator() {
           <output>{input.velocidad} km/h</output>
         </div>
         <div>
-          <label> Altura</label>
+          <label class="form-label"> Altura</label>
           <input
+          class="form-range"
             type="range"
             min="20"
             max="200"
@@ -167,8 +175,9 @@ export default function Creator() {
           <output>{input.altura} cm</output>
         </div>
         <div>
-          <label> Peso</label>
+          <label class="form-label"> Peso</label>
           <input
+          class="form-range"
             type="range"
             min="1"
             max="100"
@@ -178,15 +187,15 @@ export default function Creator() {
           />
           <output>{input.peso} kg</output>
         </div>
-        <div>
+        <div class="form-check">
           <h3>Seleccione el tipo</h3>
           {types.map((e) => (
-            <label onChange={(e) => handlerType(e)} key={e.id}>
-              <input type="checkbox" value={e.type} name="type" /> {e.type}
+            <label onChange={(e) => handlerType(e)} key={e.id} class="form-check-label">
+              <input class="form-check-input" type="checkbox" value={e.type} name="type" /> {e.type}
             </label>
           ))}
         </div>
-        <button type="submit"> Enviar Formulario</button>
+        <button type="submit" class="btn btn-danger"> Enviar Formulario</button>
       </form>
       <div className={s.creando}>
       </div>
