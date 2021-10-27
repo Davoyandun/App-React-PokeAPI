@@ -1,9 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Get_Id } from "../actions";
 import s from "../css/details.module.css";
+import { Bar } from "react-chartjs-2";
 
 export default function Details(props) {
   let dispatch = useDispatch();
@@ -15,8 +16,33 @@ export default function Details(props) {
   );
 
   let e = useSelector((e) => e.id);
+  console.log(e);
+  const [stats, setStats] = useState([]);
 
   
+
+  const data = {
+    labels: ["Vida", "Fuerza", "Defensa", "Velocidad", "Altura", "Peso"],
+    datasets: [
+      {
+        label: "Estadisticas",
+        backgroundColor: ["green", "red", "blue", "yellow", "gray", "orange"],
+        borderColor: "black",
+        borderWidth: 2,
+        // hoverBackgroundColor: generateColors(),
+        hoverBorderColor: "black",
+        data: [
+         1,2,3,4,5,6
+        ],
+      },
+    ],
+  };
+
+  const opciones = {
+    maintainAspectRatio: false,
+    responsive: true,
+  };
+
   return (
     <div className={s.img}>
       <Link to="/home" className={s.linck}>
@@ -25,18 +51,9 @@ export default function Details(props) {
       {e.length < 1 ? (
         <h3>Aun no esta disponible</h3>
       ) : (
-        <div className={s.box}>
+        <div>
           <h2>{e[0].name.toUpperCase()}</h2>
           <img src={e[0].img} alt="Img no found" width="300px" height="300" />
-
-          <div className={s.stats}>
-            <p> Vida: {e[0].vida}</p>
-            <p> Fuerza: {e[0].fuerza}</p>
-            <p>Defensa : {e[0].defensa}</p>
-            <p> Velocidad : {e[0].velocidad}</p>
-            <p> Altura: {e[0].altura}</p>
-            <p> Peso: {e[0].peso}</p>
-          </div>
           <div className={s.stats}>
             Pokémon de Tipo:
             {e[0].type ? (
@@ -46,6 +63,9 @@ export default function Details(props) {
             ) : (
               <p>tipo no encontrado</p>
             )}
+          </div>
+          <div className={s.stats}>
+            <Bar data={data} options={opciones} />
           </div>
         </div>
       )}

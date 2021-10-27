@@ -65,19 +65,19 @@ export default function NavBar({ setCurrentPage }) {
       bg="light"
       expand="lg"
       sticky=" top "
-      className="justify-content-end"
+    
     >
-      <Container fluid className="justify-content-end">
+      <Container fluid  >
         <Navbar.Brand href="#" fixed=" top ">
           PokeApp
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" fixed=" top " />
-        <Navbar.Collapse id="navbarScroll" fixed=" top ">
+        <Navbar.Toggle aria-controls="navbarScroll"  />
+        <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "1000px" }}
             navbarScroll
-            className="justify-content-end"
+           
           >
             <Button onClick={(e) => showModal(e)}>Crear Pokémon</Button>
 

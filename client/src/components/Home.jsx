@@ -49,14 +49,11 @@ export default function Home() {
     <div key="loading">
       {allpokemons.length < 1 ? (
         <div className={s.loading}>
-    
           <h1 className={s.text}>Cargando....</h1>
         </div>
       ) : (
         <div className={(s.contain, s.fondo)} key="home">
-          
           <NavBar setCurrentPage={setCurrentPage} />
-
           <div className={s.card} key="card">
             {itemInPage.length < 1 ? (
               <div className={s.nofound}>Pokémons no encontrados</div>
