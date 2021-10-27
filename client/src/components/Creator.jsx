@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link,} from "react-router-dom";
+import { Button, Modal, FormGroup, Form } from "react-bootstrap";
 import { Get_Types, Post_Pokemon } from "../actions";
-import s from '../css/creator.module.css'
+import s from "../css/creator.module.css";
 
-export default function Creator() {
+export default function Creator({ show, showModal }) {
   let dispatch = useDispatch();
   let types = useSelector((s) => s.types);
   const [input, setInput] = useState({
@@ -55,7 +55,7 @@ export default function Creator() {
       setInput({
         img: "No found",
         name: "",
-        type: [''],
+        type: [""],
         vida: "",
         fuerza: "",
         ataque: "",
@@ -70,138 +70,143 @@ export default function Creator() {
     }
   }
   return (
-    <div className={s.img}>
-      <Link to="/home">
-        <button className={s.boton}>Home</button>
-      </Link>
+    <Modal show={show} onHide={(e) => showModal(e)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Registra tu Nuevo Pokémon</Modal.Title>
+      </Modal.Header>
 
-      <h1>Registra tu Nuevo Pokémon</h1>
-      <div className={s.registro}>
-      <div className={s.box}>
-      <form onSubmit={(e) => handlerSubmit(e)}>
-        <div>
-          <label class="form-label"> Agrega un Nombre</label>
-          <input
-          class="form-control"
-            type="text"
-            value={input.name}
-            name="name"
-            onChange={(e) => handlerSave(e)}
-          />
-          {!input.name ? (
-            <output> ingrese un nombre</output>
-          ) : (
-            <output> nombre aceptado</output>
-          )}
-        </div>
-        <div>
-          <label class="form-label"> Nivel de Vida</label>
-          <input
-          class="form-range"
-            type="range"
-            min="0"
-            max="100"
-            value={input.vida}
-            name="vida"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.vida} pts de vida</output>
-        </div>
-        <div>
-          <label class="form-label"> Nivel de Fuerza</label>
-          <input
-          class="form-range"
-            type="range"
-            min="20"
-            max="100"
-            step="1"
-            value={input.fuerza}
-            name="fuerza"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.fuerza} pts de fuerza</output>
-        </div>
-        <div>
-          <label class="form-label"> Nivel de Ataque</label>
-          <input
-          class="form-range"
-            type="range"
-            min="20"
-            max="100"
-            step="1"
-            value={input.ataque}
-            name="ataque"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.ataque} pts de daño</output>
-        </div>
-        <div>
-          <label class="form-label"> Nivel de Defenza</label>
-          <input
-          class="form-range"
-            type="range"
-            min="20"
-            max="100"
-            value={input.defensa}
-            name="defensa"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.defensa} escudo</output>
-        </div>
-        <div>
-          <label class="form-label"> Velocidad Maxima</label>
-          <input
-          class="form-range"
-            type="range"
-            min="5"
-            max="180"
-            value={input.velocidad}
-            name="velocidad"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.velocidad} km/h</output>
-        </div>
-        <div>
-          <label class="form-label"> Altura</label>
-          <input
-          class="form-range"
-            type="range"
-            min="20"
-            max="200"
-            value={input.altura}
-            name="altura"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.altura} cm</output>
-        </div>
-        <div>
-          <label class="form-label"> Peso</label>
-          <input
-          class="form-range"
-            type="range"
-            min="1"
-            max="100"
-            value={input.peso}
-            name="peso"
-            onChange={(e) => handlerSave(e)}
-          />
-          <output>{input.peso} kg</output>
-        </div>
-        <div class="form-check">
-          <h3>Seleccione el tipo</h3>
-          {types.map((e) => (
-            <label onChange={(e) => handlerType(e)} key={e.id} class="form-check-label">
-              <input class="form-check-input" type="checkbox" value={e.type} name="type" /> {e.type}
-            </label>
-          ))}
-        </div>
-        <button type="submit" class="btn btn-danger"> Enviar Formulario</button>
-      </form>
-      <div className={s.creando}>
-      </div>
-      </div>
-
-      </div>
-    </div>
+      <Modal.Body>
+        <Form>
+          <FormGroup>
+            <input
+              placeholder="Ingrese un nombre"
+              class="form-control"
+              type="text"
+              value={input.name}
+              name="name"
+              onChange={(e) => handlerSave(e)}
+              color={!input.name ? "danger" : "warning"}
+            />
+            {!input.name ? (
+              <output> </output>
+            ) : (
+              <output> Nombre Aceptado</output>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <output>{input.vida} Nivel de Vida</output>
+            <input
+              class="form-range"
+              type="range"
+              min="0"
+              max="100"
+              value={input.vida}
+              name="vida"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.fuerza} Nivel de fuerza</output>
+            <input
+              class="form-range"
+              type="range"
+              min="20"
+              max="100"
+              step="1"
+              value={input.fuerza}
+              name="fuerza"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.ataque} Nivel de Daño</output>
+            <input
+              class="form-range"
+              type="range"
+              min="20"
+              max="100"
+              step="1"
+              value={input.ataque}
+              name="ataque"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.defensa} Escudo</output>
+            <input
+              class="form-range"
+              type="range"
+              min="20"
+              max="100"
+              value={input.defensa}
+              name="defensa"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.velocidad} Km/H</output>
+            <input
+              class="form-range"
+              type="range"
+              min="5"
+              max="180"
+              value={input.velocidad}
+              name="velocidad"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.altura} cm</output>
+            <input
+              class="form-range"
+              type="range"
+              min="20"
+              max="200"
+              value={input.altura}
+              name="altura"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup>
+            <output>{input.peso} Kg</output>
+            <input
+              class="form-range"
+              type="range"
+              min="1"
+              max="100"
+              value={input.peso}
+              name="peso"
+              onChange={(e) => handlerSave(e)}
+            />
+          </FormGroup>
+          <FormGroup class="form-check">
+            <h3>Seleccione el tipo</h3>
+            {types.map((e) => (
+              <label
+                onChange={(e) => handlerType(e)}
+                key={e.id}
+                class="form-check-label"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value={e.type}
+                  name="type"
+                />{" "}
+                {e.type}
+              </label>
+            ))}
+          </FormGroup>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={(e) => showModal(e)}>
+          Close
+        </Button>
+        <Button variant="primary" onSubmit={(e) => handlerSubmit(e)}>
+          Crear Pokémon
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }

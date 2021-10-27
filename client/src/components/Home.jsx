@@ -26,6 +26,7 @@ export default function Home() {
 
  
   const [currentPage, setCurrentPage] = useState(1);
+
   const [itemsPerPage] = useState(9);
   const lastItem = currentPage * itemsPerPage;
   const firstItem = lastItem - itemsPerPage;
@@ -38,6 +39,8 @@ export default function Home() {
   useEffect(() => {
     dispatch(Get_Elements());
   }, [dispatch]);
+
+
 
   /* inicio del renderizado
   ♙♙♙♙♙♙♙♙

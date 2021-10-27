@@ -17,13 +17,12 @@ import {
   Get_name,
 } from "../actions";
 
-import Home from "./Home";
-
-import s from "../css/search.module.css";
+import Creator from "./Creator";
 
 export default function NavBar({ setCurrentPage }) {
   const [name, setName] = useState("");
   const [, setRender] = useState("");
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   function handlerSetName(e) {
@@ -57,6 +56,10 @@ export default function NavBar({ setCurrentPage }) {
     setRender(`nombre ${e.target.value}`);
   }
 
+  function showModal() {
+    setShow(!show);
+  }
+
   return (
     <Navbar
       bg="light"
@@ -76,7 +79,7 @@ export default function NavBar({ setCurrentPage }) {
             navbarScroll
             className="justify-content-end"
           >
-            <Nav.Link href="/creator">Crear Pokémon</Nav.Link>
+            <Button onClick={(e) => showModal(e)}>Crear Pokémon</Button>
 
             <Form.Select
               onChange={(e) => handlerOrderName(e)}
@@ -135,21 +138,20 @@ export default function NavBar({ setCurrentPage }) {
               <option value="unknown">unknown</option>
               <option value="shadow">shadow</option>
             </Form.Select>
-
-            
           </Nav>
           <Form>
-              <FormControl
-                type="search"
-                placeholder="Busca un pokemon..."
-                onChange={(e) => handlerSetName(e)}
-              />
-              <Button type="submit" onClick={(e) => handlerGetName(e)}>
-                Buscar
-              </Button>
-            </Form>
+            <FormControl
+              type="search"
+              placeholder="Busca un pokemon..."
+              onChange={(e) => handlerSetName(e)}
+            />
+            <Button type="submit" onClick={(e) => handlerGetName(e)}>
+              Buscar
+            </Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
+      <Creator show= {show} showModal={showModal}/>
     </Navbar>
   );
 }
