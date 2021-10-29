@@ -11,7 +11,7 @@ const {
         database: DB_NAME,
         dialect: "postgresql",
         host: DB_HOST,
-        port: 6013,
+        port: 5432,
         username: DB_USER,
         password: DB_PASSWORD,
         pool: {
