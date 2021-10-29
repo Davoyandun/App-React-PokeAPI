@@ -13,26 +13,9 @@ export default function Details(props) {
     dispatch(Get_Id(props.match.params.id));
   }, [dispatch, props.match.params.id]);
   let e = useSelector((e) => e.id);
-  const [stats, setStats] = useState({
-    vida: 0,
-    fuerza: 0,
-    defensa: 0,
-    velocidad: 0,
-    altura: 0,
-    peso: 0,
-  });
 
-  function ver() {
-    setStats({
-      ...stats,
-      vida: e[0].vida,
-      fuerza: e[0].fuerza,
-      defensa: e[0].defensa,
-      velocidad: e[0].velocidad,
-      altura: e[0].altura,
-      peso: e[0].peso,
-    });
-  }
+
+
 
  
   console.log(stats);
