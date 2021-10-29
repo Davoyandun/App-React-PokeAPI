@@ -18,7 +18,7 @@ export default function Details(props) {
 
 
  
-  console.log(stats);
+
   return (
     <div className={s.img}>
     <Link to="/home" className={s.linck}>
