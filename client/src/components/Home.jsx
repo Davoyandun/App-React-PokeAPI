@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //1.- nos permite extraer los estados del store
 //2.- nos permite enviar acciones al reducer y por consiguiente almacenar datos al store
-import { Link } from "react-router-dom";
+
 // 1.- para el enrutamiento de react
 import { Get_Elements } from "../actions";
 import s from "../css/home.module.css";

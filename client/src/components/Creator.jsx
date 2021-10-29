@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, FormGroup, Form } from "react-bootstrap";
 import { Get_Types, Post_Pokemon } from "../actions";
-import s from "../css/creator.module.css";
+
 
 export default function Creator({ show, showModal }) {
   let dispatch = useDispatch();

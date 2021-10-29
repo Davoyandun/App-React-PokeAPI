@@ -4,7 +4,7 @@ import {
   Navbar,
   Container,
   Nav,
-  Link,
+
   Form,
   FormControl,
 } from "react-bootstrap";
@@ -85,7 +85,7 @@ export default function NavBar({ setCurrentPage }) {
               onChange={(e) => handlerOrderName(e)}
               aria-label="Default select example"
             >
-              <option disabled="disabled" selected="true">
+              <option disabled="disabled" selected={true}>
                 {" "}
                 Abc
               </option>
@@ -94,7 +94,7 @@ export default function NavBar({ setCurrentPage }) {
             </Form.Select>
 
             <Form.Select onChange={(e) => handlerOrderFuerza(e)}>
-              <option disabled="disabled" selected="true">
+              <option disabled="disabled" selected={true}>
                 {" "}
                 Fuerza
               </option>
@@ -103,7 +103,7 @@ export default function NavBar({ setCurrentPage }) {
             </Form.Select>
 
             <Form.Select onChange={(e) => handlerFilterCreated(e)}>
-              <option disabled="disabled" selected="true">
+              <option disabled="disabled" selected={true}>
                 {" "}
                 Origen
               </option>
@@ -113,7 +113,7 @@ export default function NavBar({ setCurrentPage }) {
             </Form.Select>
 
             <Form.Select onChange={(e) => handlerFilterTypes(e)}>
-              <option disabled="disabled" selected="true">
+              <option disabled="disabled" selected={true}>
                 Tipos
               </option>
               <option value="all">Todos</option>
