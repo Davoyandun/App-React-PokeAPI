@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function Get_Elements() {
   return async function (dispatch) {
-    let allpokemons = await axios.get("http://localhost:3001/pokemons");
+    let allpokemons = await axios.get("/pokemons");
     return dispatch({
       type: "GET_POKEMONS",
       payload: allpokemons.data,
@@ -39,7 +39,7 @@ export function Get_name(value) {
   return async function (dispatch) {
     try{
        let filterName = await axios.get(
-      "http://localhost:3001/pokemons?name=" + value
+      "/pokemons?name=" + value
     );
    
     return dispatch({
@@ -65,7 +65,7 @@ export function Get_name(value) {
 }
 export function Get_Types(value) {
   return async function (dispatch) {
-    let types = await axios.get("http://localhost:3001/types");
+    let types = await axios.get("/types");
     return dispatch({
       type: "GET_TYPES",
       payload: types.data,
@@ -75,7 +75,7 @@ export function Get_Types(value) {
 
 export function Post_Pokemon(payload) {
   return async function (dispatch) {
- await axios.post("http://localhost:3001/pokemons", payload);
+ await axios.post("/pokemons", payload);
 
     return dispatch({
       type: "POST_POKEMONS",
@@ -85,7 +85,7 @@ export function Post_Pokemon(payload) {
 }
 export function Get_Id (ids) {
   return async function (dispatch) {
-    let id = await axios.get("http://localhost:3001/pokemons/" + ids);
+    let id = await axios.get("/pokemons/" + ids);
     return dispatch({
       type: "GET_ID",
       payload: id.data,
